@@ -10,7 +10,7 @@ import Contact from './Components/pagas/Contact'
 import LogIn from './Components/LogIn-SignIn/LogIn'
 import SignUp from './Components/LogIn-SignIn/SignUp'
 import Cart from './Components/pagas/Cart'
-import { LogInProvider, SignUpProvider } from './Components/LogIn-SignIn/SignUpValidation'
+import { LogInProvider, SignUpProvider } from './Hooks/SignUpValidation'
 import Shop from './Components/pagas/Shop'
 
 function App() {

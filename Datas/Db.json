@@ -1,0 +1,144 @@
+{
+   "products": [
+    {
+        "id": 1,
+        "name": "Soft Plush Bear",
+        "details": "A cuddly and soft plush bear perfect for newborns.",
+        "category": "Toys",
+        "image": "/images/toys/soft-plush-bear.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Rattle Set",
+        "details": "Colorful rattle set to stimulate your baby's senses.",
+        "category": "Toys",
+        "image": "/images/toys/rattle-set.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Baby Walker",
+        "details": "Adjustable baby walker with safety features.",
+        "category": "Toys",
+        "image": "/images/toys/baby-walker.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Organic Cotton Onesie",
+        "details": "Comfortable and breathable organic cotton onesie for newborns.",
+        "category": "Dress",
+        "image": "/images/dress/organic-cotton-onesie.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Baby Socks Pack",
+        "details": "Pack of 5 soft baby socks to keep little feet warm.",
+        "category": "Dress",
+        "image": "/images/dress/baby-socks-pack.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Baby Blanket",
+        "details": "Warm and cozy baby blanket made from premium materials.",
+        "category": "Dress",
+        "image": "/images/dress/baby-blanket.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Toddler Jacket",
+        "details": "Stylish and comfortable jacket for toddlers.",
+        "category": "Dress",
+        "image": "/images/dress/toddler-jacket.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Baby Formula Milk",
+        "details": "Nutritious formula milk for infants, fortified with essential vitamins.",
+        "category": "Nutrition",
+        "image": "/images/nutrition/baby-formula-milk.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Organic Baby Food",
+        "details": "Organic fruit puree suitable for babies 6 months and above.",
+        "category": "Nutrition",
+        "image": "/images/nutrition/organic-baby-food.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Vitamin D Drops",
+        "details": "Essential vitamin D drops for newborns.",
+        "category": "Nutrition",
+        "image": "/images/nutrition/vitamin-d-drops.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Diaper Bag",
+        "details": "Spacious and stylish diaper bag with multiple compartments.",
+        "category": "Accessories",
+        "image": "/images/accessories/diaper-bag.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Baby Bottle Set",
+        "details": "Set of baby bottles with anti-colic nipples.",
+        "category": "Accessories",
+        "image": "/images/accessories/baby-bottle-set.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Pacifier Set",
+        "details": "Set of 2 silicone pacifiers for soothing newborns.",
+        "category": "Accessories",
+        "image": "/images/accessories/pacifier-set.jpg"
+    },
+    {
+        "id": 14,
+        "name": "Feeding Bibs",
+        "details": "Waterproof and easy-to-clean feeding bibs.",
+        "category": "Accessories",
+        "image": "/images/accessories/feeding-bibs.jpg"
+    },
+    {
+        "id": 15,
+        "name": "Baby Stroller",
+        "details": "Compact and lightweight stroller for convenient travel.",
+        "category": "Gear",
+        "image": "/images/gear/baby-stroller.jpg"
+    },
+    {
+        "id": 16,
+        "name": "Car Seat",
+        "details": "Safe and secure car seat for babies and toddlers.",
+        "category": "Gear",
+        "image": "/images/gear/car-seat.jpg"
+    },
+    {
+        "id": 17,
+        "name": "High Chair",
+        "details": "Adjustable high chair suitable for feeding and playtime.",
+        "category": "Gear",
+        "image": "/images/gear/high-chair.jpg"
+    },
+    {
+        "id": 18,
+        "name": "Baby Shampoo",
+        "details": "Gentle baby shampoo with natural ingredients.",
+        "category": "Personal Care",
+        "image": "/images/personal-care/baby-shampoo.jpg"
+    },
+    {
+        "id": 19,
+        "name": "Baby Lotion",
+        "details": "Moisturizing lotion to keep baby's skin soft and smooth.",
+        "category": "Personal Care",
+        "image": "/images/personal-care/baby-lotion.jpg"
+    },
+    {
+        "id": 20,
+        "name": "Diaper Rash Cream",
+        "details": "Effective diaper rash cream with soothing properties.",
+        "category": "Personal Care",
+        "image": "/images/personal-care/diaper-rash-cream.jpg"
+    }
+    ]
+}

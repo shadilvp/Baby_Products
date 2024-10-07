@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from 'formik'; 
-import { SignUPContext } from "./SignUpValidation";
+import { SignUPContext } from "../../Hooks/SignUpValidation";
 import { useContext } from "react";
 const SignUp = () => {
     const navigate = useNavigate();
