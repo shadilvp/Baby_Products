@@ -30,7 +30,7 @@ function App() {
               <Route path='/signup' element={<SignUp/>}/>
               <Route path='/cart' element={<Cart/>}/>
               <Route path='/shop' element={<Shop/>}/>
-              <Route path='/showitem' element={<ShowItem/>}/>
+              <Route path='/shop/:id' element={<ShowItem/>}/>
             </Routes>
           </Fetch>
         </LogInProvider>

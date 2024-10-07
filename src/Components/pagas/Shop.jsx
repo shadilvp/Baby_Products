@@ -2,17 +2,25 @@ import Header from "../Header&footer/Header";
 import Footer from "../Header&footer/Footer";
 import { ProductContext } from "../../Hooks/Fetch";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
-    const products = useContext(ProductContext);
+
+    const {product} = useContext(ProductContext);
+    const navigate = useNavigate()
+
+    if(!product){
+        return <h1>No products</h1>
+    }
 
     return (
         <div>
             <Header />
             <div className="p-6">
                 <h2 className="text-3xl font-bold text-center mb-6">Our Products</h2>
+                
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {products.map((product) => (
+                    {product.map((product) => (
                         <div key={product.id} className="border rounded-lg shadow-lg p-4 flex flex-col items-center">
                             <img 
                                 src={product.image} 
@@ -27,6 +35,7 @@ const Shop = () => {
                                     <box-icon key={index} name='star' color='#fff049'></box-icon>
                                 ))}
                             </p>
+                            <button onClick={()=> navigate(`/shop/${product.id}`)}> View details</button>
                         </div>
                     ))}
                 </div>

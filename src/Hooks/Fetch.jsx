@@ -17,7 +17,7 @@ const Fetch = ({children}) => {
     },[])
     return (
        
-            <ProductContext.Provider value={product}>
+            <ProductContext.Provider value={{product}}>
                 {children}
             </ProductContext.Provider>
        
