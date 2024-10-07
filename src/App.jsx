@@ -11,6 +11,7 @@ import LogIn from './Components/LogIn-SignIn/LogIn'
 import SignUp from './Components/LogIn-SignIn/SignUp'
 import Cart from './Components/pagas/Cart'
 import { LogInProvider, SignUpProvider } from './Components/LogIn-SignIn/SignUpValidation'
+import Shop from './Components/pagas/Shop'
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
             <Route path='/login' element={<LogIn/>}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/cart' element={<Cart/>}/>
+            <Route path='/shop' element={<Shop/>}/>
           </Routes>
         </LogInProvider>
       </SignUpProvider>

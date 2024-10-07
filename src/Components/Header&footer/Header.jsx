@@ -10,6 +10,7 @@ const Header = () => {
           <h1 className="text-2xl font-bold text-[#3C4C3C]">SoftSteps</h1>
           <ul className="flex space-x-6 text-[#3C4C3C]">
             <li><button onClick={()=> navigate('/')} className="hover:text-[#9ED1DB]">Home</button></li>
+            <li><button onClick={()=> navigate('/Shop')} className="hover:text-[#9ED1DB]">Shop</button></li>
             <li><button onClick={()=> navigate('/about')} className="hover:text-[#9ED1DB]">About</button></li>
             <li><button onClick={()=> navigate('/contact')} className="hover:text-[#9ED1DB]">Contact</button></li>
           </ul>
