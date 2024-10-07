@@ -1,20 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from 'formik'; 
-import SignUpValidation from "./SignUpValidation";
-
+import { SignUPContext } from "./SignUpValidation";
+import { useContext } from "react";
 const SignUp = () => {
     const navigate = useNavigate();
+    const SignUPValidation = useContext(SignUPContext);
 
     return (
         <Formik
             initialValues={{ name: '', email: '', password: '', confirmPassword: '' }}
-            validationSchema={SignUpValidation}
+            validationSchema={SignUPValidation}
             onSubmit={(values) => {
                 console.log("Form Submitted", values);
                 navigate("/login");  
             }}
         >
-            {({ errors, touched }) => (  
+            
                 <div className="flex items-center justify-center min-h-screen bg-[#FAF2DD]">
                     <div className="bg-white p-8 rounded-lg shadow-lg w-96">
                         <h2 className="text-2xl font-bold text-[#3C4C3C] mb-6 text-center">Sign Up</h2>
@@ -65,7 +66,7 @@ const SignUp = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            
         </Formik>
     );
 };

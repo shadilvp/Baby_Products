@@ -10,19 +10,24 @@ import Contact from './Components/pagas/Contact'
 import LogIn from './Components/LogIn-SignIn/LogIn'
 import SignUp from './Components/LogIn-SignIn/SignUp'
 import Cart from './Components/pagas/Cart'
+import { LogInProvider, SignUpProvider } from './Components/LogIn-SignIn/SignUpValidation'
 
 function App() {
   
   return (
     <>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/contact' element={<Contact/>}/>
-        <Route path='/login' element={<LogIn/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-      </Routes>
+      <SignUpProvider>
+        <LogInProvider>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/about' element={<About/>}/>
+            <Route path='/contact' element={<Contact/>}/>
+            <Route path='/login' element={<LogIn/>}/>
+            <Route path='/signup' element={<SignUp/>}/>
+            <Route path='/cart' element={<Cart/>}/>
+          </Routes>
+        </LogInProvider>
+      </SignUpProvider>
     </>
   )
 }
