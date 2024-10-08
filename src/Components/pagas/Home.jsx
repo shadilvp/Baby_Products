@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div className="bg-[#FAF2DD]" >
             <Header />
-            <div className="flex items-center justify-between min-h-screen p-6 bg-[#FAE0C5] rounded-lg shadow-lg mt-4"> {/* Added mt-4 to create space */}
+            <div className="flex items-center justify-between min-h-screen p-6 bg-[#FAE0C5] rounded-lg shadow-lg mt-4"> 
                 <div className="flex-1 text-left p-6">
                     <h1 className="text-4xl font-bold text-[#3C4C3C] mb-4">Welcome to SoftSteps</h1>
                     <p className="text-lg text-[#3C4C3C] mb-6">

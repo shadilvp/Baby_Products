@@ -9,7 +9,7 @@ const Shop = () => {
     const {product} = useContext(ProductContext);
     const navigate = useNavigate()
 
-    if(!product){
+    if(!product){ 
         return <h1>No products</h1>
     }
 
@@ -20,7 +20,9 @@ const Shop = () => {
                 <h2 className="text-3xl font-bold text-center mb-6">Our Products</h2>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {product.map((product) => (
+                    
+                    {/*displayed the product from product context by using map */}
+                     {product.map((product) => (    
                         <div key={product.id} className="border rounded-lg shadow-lg p-4 flex flex-col items-center">
                             <img 
                                 src={product.image} 
@@ -30,11 +32,6 @@ const Shop = () => {
                             <h3 className="text-lg font-semibold text-center mb-2">{product.name}</h3>
                             <p className="text-gray-600 mb-2 ">Price: ₹ <strong>{product.price}</strong></p>
                             <p className="text-gray-600 mb-2">Catogory : {product.category}</p>
-                            <p>
-                                {Array.from({ length: 5 }, (_, index) => (
-                                    <box-icon key={index} name='star' color='#fff049'></box-icon>
-                                ))}
-                            </p>
                             <button onClick={()=> navigate(`/shop/${product.id}`)}> View details</button>
                         </div>
                     ))}
