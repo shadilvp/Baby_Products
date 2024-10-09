@@ -1,17 +1,18 @@
 import React, { createContext, useState } from 'react'
-export const {CartContext} = createContext(); 
+import { useNavigate } from 'react-router-dom';
+export const CartContext = createContext(); 
 const CartProvider = ({children}) => {
+    const navigate = useNavigate();
     const [cartitems, setCartitems] = useState([])
 
-    const HandleCart = (event) => {
-        setCartitems(event.target.value);
+    const HandleCart = (item) => {
+        setCartitems(previtems => [...previtems ,item ]);
+        navigate('/cart')
     }
   return (
-    <div>
         <CartContext.Provider value={{cartitems,HandleCart}}>
             {children}
         </CartContext.Provider>
-    </div>
   )
 }
 

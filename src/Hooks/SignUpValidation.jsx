@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Children, createContext } from 'react';
 import * as Yup from 'yup';
 export const SignUPContext = createContext();
@@ -13,7 +14,8 @@ const SignUpValidation = Yup.object({ // checked the objects in the form validat
 const LoginValidation = Yup.object ({ // checked the objects in the form validation at login page by using yup
     email : Yup.string().email("Please Enter Valid Email").required('Enter Your Email'),
     password : Yup.number().min(5).required('Enter A Valid Password'),
-})
+});
+
 
 export const SignUpProvider = ({children}) => (
     <SignUPContext.Provider value={SignUpValidation}>{children}</SignUPContext.Provider>

@@ -4,12 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header&footer/Header";
 import Footer from "../Header&footer/Footer";
 import { QuantityContext } from "../../Hooks/QuantityAddRemove";
+import { CartContext } from "../../Hooks/CartContext";
 
 const ShowItem = () => {
-    const navigate = useNavigate();
+    
     const { id } = useParams(); // called the id passed from shop by using use params
     const { product } = useContext(ProductContext); // imported product from productcontext from fetch component
-    const { quantity, HandleAdd, HandleRemove } = useContext(QuantityContext); //imported the counter state for quantity from quantity context 
+    const { quantity, HandleAdd, HandleRemove } = useContext(QuantityContext); //imported the counter state for quantity from quantity context
+    const {HandleCart,cartitems} = useContext(CartContext) 
 
     const item = product.find((item) => parseInt(item.id) === parseInt(id)); // created a function for selecting items by checking their id's
 
@@ -41,21 +43,18 @@ const ShowItem = () => {
                             <div className="flex items-center mt-4 space-x-4">
                                 <button
                                     onClick={HandleRemove}
-                                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition"
-                                >
-                                    -
-                                </button>
+                                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition">-</button>
                                 <p className="text-xl font-semibold w-6 text-center">{quantity}</p>
                                 <button
-                                    onClick={HandleAdd}
+                                    onClick={HandleAdd.item}
                                     className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition"
                                 >
                                     +
                                 </button>
                             </div> 
-
+                                
                             <button
-                                onClick={() => navigate('/cart')}
+                                onClick={()=>HandleCart(item)}
                                 className="mt-6 bg-[#3C4C3C] text-white py-2 px-4 rounded-md hover:bg-[#9ED1DB] transition duration-200"
                             >
                                 Add to Cart
@@ -67,6 +66,7 @@ const ShowItem = () => {
                 )}
             </div>
             <Footer />
+            {console.log(cartitems)}
         </div>
     );
 };

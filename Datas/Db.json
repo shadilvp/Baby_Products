@@ -1,5 +1,5 @@
 {
-   "products": [
+  "products": [
     {
       "id": 1,
       "name": "Soft Plush Teddy Bear",
@@ -160,6 +160,8 @@
       "price": 4599,
       "image": "https://rukminim2.flixcart.com/image/612/612/k8g8knk0/stroller-pram/h/j/j/sunshine-baby-stroller-18154-stroller-luvlap-original-imafqgh2dmxufqt9.jpeg?q=70"
     }
+  ],
+  "users": [
+    
   ]
-  
 }
