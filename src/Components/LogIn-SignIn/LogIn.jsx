@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useContext, useState } from "react";
-import { ProductContext } from "../../Hooks/Fetch";
+import { ProductContext } from "../../Hooks/Context"; 
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const LogIn = () => {
                   return  user.email == values.email 
                 });
                
-                    FoundUser.password === values.password ? navigate('/') : setError("user is not found");
+                    FoundUser.password == values.password ? navigate('/') : setError("user is not found");
                  
             }}
         >

@@ -1,12 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { SignUPContext } from "../../Hooks/SignUpValidation";
 import { useContext, useState } from "react";
-import { ProductContext } from "../../Hooks/Fetch";
+import { ProductContext } from "../../Hooks/Context";
 const SignUp = () => {
     const navigate = useNavigate();
-    const { PostUserDetails, userDetails } = useContext(ProductContext) // destructered the register
-    const SignUPValidation = useContext(SignUPContext);
+    const { PostUserDetails, userDetails , SignUPValidation} = useContext(ProductContext) // destructered the register
     { console.log("signup details :", userDetails) }
     const [error, setError] = useState("");
     return (
@@ -17,7 +15,8 @@ const SignUp = () => {
                 password: '',
                 confirmPassword: '',
                 cart: [],
-                orders: []
+                orders: [],
+                block : false 
             }}
             validationSchema={SignUPValidation}
 

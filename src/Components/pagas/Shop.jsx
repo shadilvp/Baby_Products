@@ -1,6 +1,6 @@
 import Header from "../Header&footer/Header";
 import Footer from "../Header&footer/Footer";
-import { ProductContext } from "../../Hooks/Fetch";
+import { ProductContext } from "../../Hooks/Context"; 
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
