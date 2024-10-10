@@ -11,7 +11,13 @@ const Context = ({children}) => {
     const [product, setProduct] = useState([]); // for product storing
     const [userDetails, setUserDetails] = useState([ ]); // for storing details
     const [quantity, setQuantity] = useState(1); // for storings the quantitys (counter)
-    const [cartitems, setCartitems] = useState([]) // store the items in the cart
+    const [cart, setCart] = useState([]) // store the items in the cart
+    const [cartdatas, setCartdatas] = useState([]) // to store the datas passed the condtion in cart section
+    const [notLogged , setNotLogged] = useState("") // storing the error message to show in the show item page when user is not logged
+    const [itemIncluded, setItemIncluded] = useState("") //storing the error message for if the item is already included in cart
+    
+    const Email = localStorage.getItem("loginemail","*****"); //geting the email from locale storage
+    const Password = localStorage.getItem("loginpassword","*****") // geting the password from locale storage
 
 
 // Fetching Json =>
@@ -20,8 +26,9 @@ const Context = ({children}) => {
         
         const fetchdata = async () => {
             try {
-                const responce = await Axios.get("http://localhost:4000/products") // for fetching the prodect details from json server              setProduct(responce.data);
-                console.log( "product details added ",responce.data);
+                const responce = await Axios.get("http://localhost:4000/products") // for fetching the prodect details from json server
+                setProduct(responce.data);
+                // console.log( "product details added ",responce.data);
             } catch (error) {
                 console.error("product details is not added",error);
                 
@@ -44,12 +51,18 @@ const Context = ({children}) => {
         }
               
     }
+
     useEffect (()=> {
         const GetUserDetails = async () => {
             try {
                 const responce = await Axios.get("http://localhost:4000/users") // for fetching the user details from json server
                 setUserDetails(responce.data)
-                console.log("user details getted",responce.data);
+
+                
+                const res= await Axios.get("")
+              
+                
+                // console.log("user details getted",responce.data);
                 
             } catch (error) {
                 console.error("didnt get the details",error);
@@ -59,18 +72,7 @@ const Context = ({children}) => {
         GetUserDetails()
     }, [])
 
-    const UpdateCart = async (userId , UpdatedCart) => {
-        try {
-            const responce = await Axios.patch(`http://localhost:4000/users/${userId}`);
-                cart : UpdatedCart ;
-                console.log("cart is updated" ,responce.data);
-                
-        } catch (error) {
-            console.error("cart is not updated",error);
-            
-        }
-    }
-
+   
 
 // Quantity Handling
 
@@ -100,24 +102,90 @@ const Context = ({children}) => {
 
 //Handling the cart means when data is stored and cart will show the previus and neew data together
 
-    const HandleCart = (item) => {
-        setCartitems(previtems => [...previtems ,item ]);
-        navigate('/cart')
+    const  HandleCart = async (item) => {
+        try {
+            
+
+            if (!Password || Password.length === 0) { // condition to check any users is logged or noot
+                setNotLogged("User want to LogIn first")
+                return ;
+            };
+               
+            
+
+            const checkingEmail = userDetails.findIndex((userDetailsInJson) => userDetailsInJson.email == Email ); // checking the email in locale storage is mathing to any  email in json
+
+            if (checkingEmail === -1) { //checking the email is correct
+                console.log("nothing is added to cart");
+                return ;
+            }
+                const userId = userDetails[checkingEmail].id ; //destructuring the id from users
+                const res= await Axios.get(`http://localhost:4000/users/${userId}`)
+                
+                const cart2=res.data.cart
+                
+                const existingCart = (cart2) || []  ;
+                const itemExists = cart2.some((cartitems)=> cartitems.id == item.id) // checking that the item is include or not 
+
+                if (itemExists) {
+                   setItemIncluded("item is already in cart");
+                //    console.log("item is already in cart");
+                   return ;
+                }
+                const updatedCartItems = [...existingCart , item]; // addinng new cart old carts
+                const updatedData = {cart : updatedCartItems}; // adding the cart
+
+                
+
+                const responce = await Axios.patch(`http://localhost:4000/users/${userId}`,updatedData); // updating the cart
+                console.log("cart updated succesfully" , responce.data);
+                setCart(updatedCartItems)
+                navigate('/cart')
+        
+        } catch (error) {
+            console.error("mistake in updating the cart" , error);
+            
+        }
+
+        }
+
+// Handling The Cart
+
+        useEffect(()=>{
+            const user = userDetails.find((users)=> users.email === Email); // checking the both emails are matching or not
+    
+            if(!user){
+                console.log("invalid user ");
+            }else{
+                setCartdatas([user.cart]) 
+            }
+        },[userDetails , Email])
+
+// Handling The LogOUT        
+
+    const HandleLogOut = () => { // this function for removing the login 
+        localStorage.removeItem("loginemail");
+        localStorage.removeItem("loginpassword")
+        navigate('/')
     }
+
 
 
     return (
        
             <ProductContext.Provider value={{
-                product, PostUserDetails, userDetails , UpdateCart , // import the fetching datas
-                quantity, HandleAdd,HandleRemove, // import the quantity handlers
-                SignUpValidation , LoginValidation, // import the form validation yup
-                cartitems,HandleCart // import the cart handling
+                product, PostUserDetails, userDetails , // exporting the fetching datas
+                quantity, HandleAdd,HandleRemove, // exporting the quantity handlers
+                SignUpValidation , LoginValidation, // exporting the form validation yup
+                HandleCart , cart, notLogged , itemIncluded ,  // exporting the cart handling
+                HandleLogOut , //exporting the Handling logout BUton in login page
+                cartdatas, //storing the datas and exporting to cart page 
                 }}>
                 {children}
             </ProductContext.Provider>
        
     )
 };
+
 
 export default Context;

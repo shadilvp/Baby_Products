@@ -5,7 +5,7 @@ import { ProductContext } from "../../Hooks/Context";
 
 const LogIn = () => {
     const navigate = useNavigate();
-    const {userDetails , product} = useContext(ProductContext);
+    const {userDetails , product , HandleLogOut} = useContext(ProductContext);
     const [error , setError] =useState("");
         
     return (
@@ -18,6 +18,10 @@ const LogIn = () => {
                 });
                
                     FoundUser.password == values.password ? navigate('/') : setError("user is not found");
+
+                    localStorage.setItem("loginemail",values.email) // storing the email into local storage
+                    localStorage.setItem("loginpassword",values.password) // storing the password into local storage
+
                  
             }}
         >
@@ -57,7 +61,8 @@ const LogIn = () => {
         <div className="mt-4 text-center">
             <p className="text-[#3C4C3C]">
                 Don't have an account? 
-                <a onClick={() => navigate('/signup')} className="text-[#9ED1DB] hover:underline cursor-pointer"> Sign Up</a>
+                <button onClick={() => navigate('/signup')} className="text-[#9ED1DB] hover:underline cursor-pointer"> Sign Up</button>
+                <button onClick={HandleLogOut}>Log Out</button>
             </p>
         </div>
     </div>

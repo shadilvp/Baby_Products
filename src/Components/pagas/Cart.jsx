@@ -1,17 +1,24 @@
-import { useContext } from "react";
-// import { CartContext } from "../../Hooks/CartContext";
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "../../Hooks/Context"; 
 
 const Cart = () => {
-    const {cartitems} = useContext(CartContext);
+    const {cartdatas} = useContext(ProductContext);
+
+    
+
+
+    
+    console.log( "user details",cartdatas); 
+
         return(
             <div>
-                {/* <ul>
-                    {cartitems.map((items)=>(
+                <ul>
+                    {cartdatas.map((items)=>(
                         <li key={items.id}>
                             <h2>{items.name}</h2>
                         </li>
                     ))}
-                </ul> */}
+                </ul>
             </div>
         )
 };

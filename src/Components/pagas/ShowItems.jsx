@@ -1,52 +1,68 @@
 import { useContext } from "react";
-import {  useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header&footer/Header";
 import Footer from "../Header&footer/Footer";
 import { ProductContext } from "../../Hooks/Context";
 
-
 const ShowItem = () => {
+    const navigate = useNavigate()
     const { id } = useParams();
-    const { product , quantity, HandleAdd, HandleRemove , HandleCart, cartitems} = useContext(ProductContext); 
-
+    const { product, quantity, HandleAdd, HandleRemove, HandleCart, notLogged, itemIncluded } = useContext(ProductContext);
+    
     const item = product.find((item) => parseInt(item.id) === parseInt(id));
 
-
     return (
-        <div>
+        <div className="flex flex-col min-h-screen bg-[#FAF2DD]">
             <Header />
-            <div>
+            <div className="flex flex-col md:flex-row md:justify-center items-center flex-grow p-8">
                 {item ? (
-                    <div>
-                        <div>
+                    <div className="flex flex-col md:flex-row w-full max-w-6xl bg-white shadow-lg rounded-lg overflow-hidden">
+                        <div className="flex-shrink-0 w-full md:w-1/2">
                             <img
                                 src={item.image}
                                 alt={item.name}
+                                className="w-full h-72 object-cover md:h-full rounded-lg"
                             />
                         </div>
-                        <div>
-                            <p>{item.category}</p>
-                            <h1>{item.name}</h1>
-                            <p>₹{item.price}</p>
-                            <p>{item.details}</p>
-                        </div>
+                        <div className="md:w-1/2 p-6 flex flex-col justify-between">
+                            <div>
+                                <p className="text-sm text-gray-500">{item.category}</p>
+                                <h1 className="text-3xl font-bold text-[#3C4C3C] mb-2">{item.name}</h1>
+                                <p className="text-xl font-semibold text-[#3C4C3C] mb-4">
+                                    ₹{item.price} <span className="text-sm text-gray-400">+ Free Shipping</span>
+                                </p>
+                                <p className="text-gray-700 mb-4">{item.details}</p>
+                            </div>
 
-                        <div>
-                            <button onClick={HandleRemove}>-</button>
-                            <p>{quantity}</p>
-                            <button onClick={HandleAdd}>+</button>
+                            <div className="flex items-center mt-4">
+                                <button
+                                    onClick={HandleRemove}
+                                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition"
+                                >-</button>
+                                <p className="text-xl font-semibold mx-4">{quantity}</p>
+                                <button
+                                    onClick={HandleAdd}
+                                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition"
+                                >
+                                    +
+                                </button>
+                            </div>
+                            <button
+                                onClick={() => HandleCart(item)}
+                                className="mt-6 bg-[#3C4C3C] text-white py-2 px-4 rounded-md hover:bg-[#9ED1DB] transition duration-200"
+                            >
+                                Add to Cart
+                            </button>
+                            <p className="text-red-500 text-center mt-2">{itemIncluded}{notLogged}{notLogged && (<button className="text-[#430e0e] hover:underline cursor-pointer" onClick={() => navigate('/login')} >  LoginIn</button>)}</p>
+                    
                         </div>
-
-                        <button onClick={() => HandleCart(item)}>
-                            Add to Cart
-                        </button>
                     </div>
                 ) : (
-                    <p>Item not found</p>
+                    <p className="text-red-500">Item not found</p>
                 )}
+                
             </div>
             <Footer />
-            {console.log(cartitems)}
         </div>
     );
 };
