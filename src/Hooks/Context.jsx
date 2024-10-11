@@ -10,14 +10,14 @@ const Context = ({children}) => {
 
     const [product, setProduct] = useState([]); // for product storing
     const [userDetails, setUserDetails] = useState([ ]); // for storing details
-    const [quantity, setQuantity] = useState(1); // for storings the quantitys (counter)
     const [cart, setCart] = useState([]) // store the items in the cart
-    const [cartdatas, setCartdatas] = useState([]) // to store the datas passed the condtion in cart section
     const [notLogged , setNotLogged] = useState("") // storing the error message to show in the show item page when user is not logged
     const [itemIncluded, setItemIncluded] = useState("") //storing the error message for if the item is already included in cart
+    const [cartStore, setCartStore] = useState([]) // fetched the cart from uuser from json and stored in this state  
+
+    const Email = localStorage.getItem("loginemail"); //geting the email from locale storage
+    const Password = localStorage.getItem("loginpassword") // geting the password from locale storage
     
-    const Email = localStorage.getItem("loginemail","*****"); //geting the email from locale storage
-    const Password = localStorage.getItem("loginpassword","*****") // geting the password from locale storage
 
 
 // Fetching Json =>
@@ -47,7 +47,7 @@ const Context = ({children}) => {
             
         } catch (error){
             console.error("User Not Registered",error);
-            
+             
         }
               
     }
@@ -72,16 +72,122 @@ const Context = ({children}) => {
         GetUserDetails()
     }, [])
 
-   
+    const GetCurrentUser = userDetails.find((details)=>( // destructerd the current userdetails
+        details.email === Email
+    ))
+    // console.log("GetCurrentUser" , GetCurrentUser)
+    
+
+    useEffect(() => {   
+        const getCartDetails = async () => {
+            if (userDetails.length === 0) {
+                // console.log("userDetails is not yet available");
+                return;
+            }
+    
+            try {
+                const checkingEmail = userDetails.findIndex((userDetailsInJson) => userDetailsInJson.email === Email);
+                // console.log("Index found:", checkingEmail);
+                // console.log("User details:", userDetails);
+    
+                if (checkingEmail === -1) {
+                    console.error("Email not found in userDetails.");
+                    return;
+                }
+    
+                const userId = userDetails[checkingEmail].id;
+                const res = await Axios.get(`http://localhost:4000/users/${userId}`);
+                // console.log("Axios response:", res.data);
+    
+                if (res.data && res.data.cart) {
+                    setCartStore(res.data.cart);
+                    // console.log("cart2", res.data.cart);
+                } else {
+                    // console.error("No cart data available in the response.");
+                }
+            } catch (error) {
+                console.error("cart is not fetched", error);
+            }
+        };
+    
+        getCartDetails();
+    }, [userDetails]);
+    
+    
 
 // Quantity Handling
+// console.log("product", product)
 
-    const HandleAdd = () => {
-        setQuantity(c => c + 1)
+// const itemprise = product.find((prise)=>(
+
+// ))
+    
+    const HandleAdd = async(addItem) => {
+        
+        setCartStore((prevCart)=>{
+            const updatedCart = prevCart.map((item)=>{
+                if (item.id === addItem.id) {
+                    return { ...item, quantity: item.quantity  + 1 , totalprice :   item.price };
+                }
+                return item ;
+            })
+            return updatedCart
+        })
+
+        try {
+            
+        const UpdatedCartitems = cartStore.map((items)=>{
+            if(items.id === addItem.id){{
+                return{...items,quantity : items.quantity + 1 , price : items.price } 
+            }}
+            return items ;
+        })
+
+        const UpdateData = {cart : UpdatedCartitems }
+        // console.log("UpdatedCartitems", UpdateData)
+        // console.log('id',GetCurrentUser.id)
+        const res = await Axios.patch(`http://localhost:4000/users/${GetCurrentUser.id}`,UpdateData);
+        // console.log("quantity updated", res.data);
+
+        } catch (error) {
+            console.error("quantity not uppdated" , error);
+            
+        }
+        
     };
 
-    const HandleRemove = () => {
-        quantity > 1 && setQuantity( c => c - 1)
+    const HandleRemove = async (removeItem) => {
+        setCartStore((prevCart)=>{
+            const updatedCart = prevCart.map((item)=>{
+                if(item.id === removeItem.id){
+                    if (item.quantity > 1) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    } else {
+                        return item;
+                    }
+                }
+                return item ;
+            })
+            return updatedCart
+        })
+        
+        try {
+            const UpdatedCartItems = cartStore.map((item)=>{
+                if (item.idd === removeItem.id) {
+                    return {...item ,  quantity : item.quantity - 1  }
+                }
+                return item
+            })
+            const UpdateData = {cart : UpdatedCartItems }
+            // console.log("UpdatedCartitems", UpdateData)
+            // console.log('id',GetCurrentUser.id)
+            const res = await Axios.patch(`http://localhost:4000/users/${GetCurrentUser.id}`,UpdateData);
+            // console.log("quantity updated", res.data);
+    
+            } catch (error) {
+                console.error("quantity not uppdated" , error);
+                
+            }
     };
 
 
@@ -137,7 +243,7 @@ const Context = ({children}) => {
 
                 
 
-                const responce = await Axios.patch(`http://localhost:4000/users/${userId}`,updatedData); // updating the cart
+                const responce = await Axios.patch(`http://localhost:4000/users/${userId}`,{cart : updatedCartItems}); // updating the cart
                 console.log("cart updated succesfully" , responce.data);
                 setCart(updatedCartItems)
                 navigate('/cart')
@@ -151,15 +257,17 @@ const Context = ({children}) => {
 
 // Handling The Cart
 
-        useEffect(()=>{
-            const user = userDetails.find((users)=> users.email === Email); // checking the both emails are matching or not
-    
-            if(!user){
-                console.log("invalid user ");
-            }else{
-                setCartdatas([user.cart]) 
-            }
-        },[userDetails , Email])
+useEffect(() => {
+    const user = GetCurrentUser // checking if the emails match
+  
+    if (user) {
+      setCartStore(user.cart);
+      
+    } else {
+    //   console.log('User not found');
+    }
+  }, [userDetails, Email]);
+  
 
 // Handling The LogOUT        
 
@@ -175,11 +283,11 @@ const Context = ({children}) => {
        
             <ProductContext.Provider value={{
                 product, PostUserDetails, userDetails , // exporting the fetching datas
-                quantity, HandleAdd,HandleRemove, // exporting the quantity handlers
+                 HandleAdd,HandleRemove, // exporting the quantity handlers
                 SignUpValidation , LoginValidation, // exporting the form validation yup
                 HandleCart , cart, notLogged , itemIncluded ,  // exporting the cart handling
                 HandleLogOut , //exporting the Handling logout BUton in login page
-                cartdatas, //storing the datas and exporting to cart page 
+                cartStore //storing the datas and exporting to cart page 
                 }}>
                 {children}
             </ProductContext.Provider>

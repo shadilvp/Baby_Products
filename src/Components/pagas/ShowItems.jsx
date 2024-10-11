@@ -7,7 +7,7 @@ import { ProductContext } from "../../Hooks/Context";
 const ShowItem = () => {
     const navigate = useNavigate()
     const { id } = useParams();
-    const { product, quantity, HandleAdd, HandleRemove, HandleCart, notLogged, itemIncluded } = useContext(ProductContext);
+    const { product, HandleCart, notLogged, itemIncluded } = useContext(ProductContext);
     
     const item = product.find((item) => parseInt(item.id) === parseInt(id));
 
@@ -34,19 +34,6 @@ const ShowItem = () => {
                                 <p className="text-gray-700 mb-4">{item.details}</p>
                             </div>
 
-                            <div className="flex items-center mt-4">
-                                <button
-                                    onClick={HandleRemove}
-                                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition"
-                                >-</button>
-                                <p className="text-xl font-semibold mx-4">{quantity}</p>
-                                <button
-                                    onClick={HandleAdd}
-                                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition"
-                                >
-                                    +
-                                </button>
-                            </div>
                             <button
                                 onClick={() => HandleCart(item)}
                                 className="mt-6 bg-[#3C4C3C] text-white py-2 px-4 rounded-md hover:bg-[#9ED1DB] transition duration-200"
