@@ -195,9 +195,17 @@
           "details": "Pellentesque nisl ac dictum tincidunt ut viverra non, sem in sed fringilla a quis eu in et, aliquet convallis ornare pellentesque nibh phasellus tempor. Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa.",
           "category": "Toys",
           "price": 799,
-          "quantity": 16,
-          "image": "https://rukminim2.flixcart.com/image/612/612/kdrpksw0/stuffed-toy/7/s/z/brown-teddy-bears-huggable-valentine-loveable-for-someone-original-imafuhwqydyjugxk.jpeg?q=70",
-          "totalprice": 12833
+          "quantity": 1,
+          "image": "https://rukminim2.flixcart.com/image/612/612/kdrpksw0/stuffed-toy/7/s/z/brown-teddy-bears-huggable-valentine-loveable-for-someone-original-imafuhwqydyjugxk.jpeg?q=70"
+        },
+        {
+          "id": "2",
+          "name": "Baby Rattle Set",
+          "details": "Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa nec massa pulvinar ipsum sed vitae vitae feugiat sem in etiam non turpis blandit lorem fringilla lacus elementum urna.",
+          "category": "Toys",
+          "price": 499,
+          "quantity": 1,
+          "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70"
         }
       ],
       "orders": [],

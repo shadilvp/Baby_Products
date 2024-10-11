@@ -122,7 +122,7 @@ const Context = ({children}) => {
 
 // ))
     
-    const HandleAdd = async(addItem) => {
+    const HandleAddQuantity = async(addItem) => {
         
         setCartStore((prevCart)=>{
             const updatedCart = prevCart.map((item)=>{
@@ -156,7 +156,7 @@ const Context = ({children}) => {
         
     };
 
-    const HandleRemove = async (removeItem) => {
+    const HandleRemoveQuantity = async (removeItem) => {
         setCartStore((prevCart)=>{
             const updatedCart = prevCart.map((item)=>{
                 if(item.id === removeItem.id){
@@ -179,8 +179,7 @@ const Context = ({children}) => {
                 return item
             })
             const UpdateData = {cart : UpdatedCartItems }
-            // console.log("UpdatedCartitems", UpdateData)
-            // console.log('id',GetCurrentUser.id)
+
             const res = await Axios.patch(`http://localhost:4000/users/${GetCurrentUser.id}`,UpdateData);
             // console.log("quantity updated", res.data);
     
@@ -189,7 +188,26 @@ const Context = ({children}) => {
                 
             }
     };
+// for removing the items from cart 
 
+    const HandleRemoveItem = async (removeItem) => {
+        try {
+            
+                const updatedCart = cartStore.filter((item)=> item.id !== removeItem.id)
+
+                setCartStore(updatedCart)
+            
+        
+            const updatedData = {cart : updatedCart }
+            
+            const res = await Axios.patch(`http://localhost:4000/users/${GetCurrentUser.id}`,updatedData);
+            console.log("Item removed successfully", res.data);
+        } catch (error) {
+            console.error("item is not deleted",error);
+            
+        }
+
+    }
 
 // Form Validation for signup and login
 
@@ -283,7 +301,7 @@ useEffect(() => {
        
             <ProductContext.Provider value={{
                 product, PostUserDetails, userDetails , // exporting the fetching datas
-                 HandleAdd,HandleRemove, // exporting the quantity handlers
+                 HandleAddQuantity,HandleRemoveQuantity, HandleRemoveItem ,// exporting the quantity handlers & remove item handlers
                 SignUpValidation , LoginValidation, // exporting the form validation yup
                 HandleCart , cart, notLogged , itemIncluded ,  // exporting the cart handling
                 HandleLogOut , //exporting the Handling logout BUton in login page
