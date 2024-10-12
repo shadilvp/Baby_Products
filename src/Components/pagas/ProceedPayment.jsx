@@ -1,18 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import { ProductContext } from '../../Hooks/Context';
+import { useNavigate } from 'react-router-dom';
 const ProceedPayment = () => {
-    const initialValues = {
-        fullName: '',
-        email: '',
-        phone: '',
-        streetAddress: '',
-        city: '',
-        state: '',
-        postalCode: '',
-        cardNumber: '',
-    };
+    const navigate = useNavigate()
+    const {initialValues, orderDetails , setOrderDetails ,  HandleOrders} = useContext(ProductContext)
+
 
     const proceedPaymentValidation = Yup.object({
         fullName: Yup.string().required('Please enter your name'),
@@ -25,16 +19,27 @@ const ProceedPayment = () => {
         cardNumber: Yup.string().required('Please enter your card number'),
     });
 
-    const handleSubmit = (values) => {
-        console.log(values);
+    const handleSubmit = async (values) => {
+
+        const updatedOrderDetails = {
+            ...orderDetails,
+            ...values,
+            orders: []
+        };
+        setOrderDetails(updatedOrderDetails);
+
+        await HandleOrders();
+        navigate('/payment')
     };
+
+    console.log("orderdetails", orderDetails)
 
     return (
         <div className="bg-gray-100 min-h-screen flex items-center justify-center">
             <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
                 <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Proceed to Payment</h1>
                 <Formik
-                    initialValues={initialValues}
+                    initialValues={orderDetails}
                     validationSchema={proceedPaymentValidation}
                     onSubmit={handleSubmit}
                 >

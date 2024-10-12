@@ -12,6 +12,7 @@ import Shop from './Components/pagas/Shop'
 import Context from './Hooks/Context' //importing hook
 import ShowItem from './Components/pagas/ShowItems'
 import ProceedPayment from './Components/pagas/ProceedPayment'
+import Payment from './Components/pagas/Payment'
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
                     <Route path='/shop' element={<Shop/>}/>
                     <Route path='/shop/:id' element={<ShowItem/>}/>
                     <Route path='/proceedpayment' element={<ProceedPayment/>}/>
+                    <Route path='/payment' element={<Payment/>}/>
+
                   </Routes>
                 </Context>
 

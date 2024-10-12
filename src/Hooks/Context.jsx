@@ -14,7 +14,7 @@ const Context = ({children}) => {
     const [notLogged , setNotLogged] = useState("") // storing the error message to show in the show item page when user is not logged
     const [itemIncluded, setItemIncluded] = useState("") //storing the error message for if the item is already included in cart
     const [cartStore, setCartStore] = useState([]) // fetched the cart from uuser from json and stored in this state  
-
+  
     const Email = localStorage.getItem("loginemail"); //geting the email from locale storage
     const Password = localStorage.getItem("loginpassword") // geting the password from locale storage
     
@@ -296,6 +296,41 @@ useEffect(() => {
     }
 
 
+// storing shipping adress details in proceed payment validation 
+
+
+const [orderDetails, setOrderDetails] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    streetAddress: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    cardNumber: '',
+  });
+
+const HandleOrders = async (orders) => {
+    try {
+        
+        const newOrder = {
+            orderDetails : orderDetails ,
+            cartitems : cartStore  ,
+        }
+
+        const updatedCart = [...GetCurrentUser.orders,newOrder]
+
+        const res =  await Axios.patch(`http://localhost:4000/users/${GetCurrentUser.id}`, {
+            orders: updatedCart,
+            cart : [] ,
+        });
+        console.log('Order stored successfully');
+
+    } catch (error) {
+        console.error("not saved",error);
+        
+    } 
+}
 
     return (
        
@@ -305,7 +340,8 @@ useEffect(() => {
                 SignUpValidation , LoginValidation, // exporting the form validation yup
                 HandleCart , cart, notLogged , itemIncluded ,  // exporting the cart handling
                 HandleLogOut , //exporting the Handling logout BUton in login page
-                cartStore //storing the datas and exporting to cart page 
+                cartStore, //storing the datas and exporting to cart page 
+                orderDetails , setOrderDetails ,  HandleOrders// exporting the shipping details stored valu
                 }}>
                 {children}
             </ProductContext.Provider>
