@@ -9,10 +9,10 @@ import LogIn from './Components/LogIn-SignIn/LogIn'
 import SignUp from './Components/LogIn-SignIn/SignUp'
 import Cart from './Components/pagas/Cart'
 import Shop from './Components/pagas/Shop'
-import Context from './Hooks/Context' //importing hook
+import Context from './Hooks/Context'
 import ShowItem from './Components/pagas/ShowItems'
 import ProceedPayment from './Components/pagas/ProceedPayment'
-import Payment from './Components/pagas/Payment'
+import UserDetails from './Components/pagas/UserDetails'
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
                     <Route path='/shop' element={<Shop/>}/>
                     <Route path='/shop/:id' element={<ShowItem/>}/>
                     <Route path='/proceedpayment' element={<ProceedPayment/>}/>
-                    <Route path='/payment' element={<Payment/>}/>
+                    <Route path='/userdetails' element={<UserDetails/>}/>
 
                   </Routes>
                 </Context>

@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { ProductContext } from '../../Hooks/Context';
 import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2"
 const ProceedPayment = () => {
     const navigate = useNavigate()
     const {initialValues, orderDetails , setOrderDetails ,  HandleOrders} = useContext(ProductContext)
@@ -28,11 +29,17 @@ const ProceedPayment = () => {
         };
         setOrderDetails(updatedOrderDetails);
 
-        await HandleOrders();
-        navigate('/payment')
+        await HandleOrders(values);
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Payment sussefully completed",
+            showConfirmButton: false,
+            timer: 5500
+          });
+          navigate('/shop')
     };
 
-    console.log("orderdetails", orderDetails)
 
     return (
         <div className="bg-gray-100 min-h-screen flex items-center justify-center">

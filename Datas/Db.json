@@ -188,18 +188,29 @@
       "email": "abc@gmail.com",
       "password": "12345",
       "confirmPassword": "12345",
-      "cart": [],
+      "cart": [
+        {
+          "id": "3",
+          "name": "Organic Cotton Onesie",
+          "details": "Pellentesque nisl ac dictum tincidunt ut viverra non, sem in sed fringilla a quis eu in et, aliquet convallis ornare pellentesque nibh phasellus tempor.",
+          "category": "Dress",
+          "price": 999,
+          "quantity": 8,
+          "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/kids-dungaree-romper/u/z/n/0-1-month-110953-vparents-original-imahfxnfemhzzhzw.jpeg?q=70",
+          "totalprice": 999
+        }
+      ],
       "orders": [
         {
           "orderDetails": {
-            "fullName": "",
-            "email": "",
-            "phone": "",
-            "streetAddress": "",
-            "city": "",
-            "state": "",
-            "postalCode": "",
-            "cardNumber": ""
+            "fullName": "shadil",
+            "email": "abc@gmail.com",
+            "phone": "8086185269",
+            "streetAddress": "valanchery",
+            "city": "Malappuram",
+            "state": "kerala",
+            "postalCode": "676552",
+            "cardNumber": "1234567890"
           },
           "cartitems": [
             {
@@ -215,37 +226,24 @@
         },
         {
           "orderDetails": {
-            "fullName": "",
-            "email": "",
-            "phone": "",
-            "streetAddress": "",
-            "city": "",
-            "state": "",
-            "postalCode": "",
-            "cardNumber": ""
-          },
-          "cartitems": []
-        },
-        {
-          "orderDetails": {
-            "fullName": "",
-            "email": "",
-            "phone": "",
-            "streetAddress": "",
-            "city": "",
-            "state": "",
-            "postalCode": "",
-            "cardNumber": ""
+            "fullName": "shadil",
+            "email": "abc@gmail.com",
+            "phone": "8086185269",
+            "streetAddress": "valanchery",
+            "city": "Malappuram",
+            "state": "kerala",
+            "postalCode": "676552",
+            "cardNumber": "1234567890"
           },
           "cartitems": [
             {
-              "id": "1",
-              "name": "Soft Plush Teddy Bear",
-              "details": "Pellentesque nisl ac dictum tincidunt ut viverra non, sem in sed fringilla a quis eu in et, aliquet convallis ornare pellentesque nibh phasellus tempor. Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa.",
+              "id": "2",
+              "name": "Baby Rattle Set",
+              "details": "Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa nec massa pulvinar ipsum sed vitae vitae feugiat sem in etiam non turpis blandit lorem fringilla lacus elementum urna.",
               "category": "Toys",
-              "price": 799,
+              "price": 499,
               "quantity": 1,
-              "image": "https://rukminim2.flixcart.com/image/612/612/kdrpksw0/stuffed-toy/7/s/z/brown-teddy-bears-huggable-valentine-loveable-for-someone-original-imafuhwqydyjugxk.jpeg?q=70"
+              "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70"
             }
           ]
         }
@@ -259,6 +257,62 @@
       "password": "11111",
       "confirmPassword": "11111",
       "cart": [],
+      "orders": [],
+      "block": false
+    },
+    {
+      "id": "bbe2",
+      "name": "abcd",
+      "email": "abc1@gmail.com",
+      "password": "afsal",
+      "confirmPassword": "afsal",
+      "cart": [],
+      "orders": [
+        {
+          "orderDetails": {
+            "fullName": "shadil",
+            "email": "abc@gmail.com",
+            "phone": "8086185269",
+            "streetAddress": "valanchery",
+            "city": "Malappuram",
+            "state": "kerala",
+            "postalCode": "676552",
+            "cardNumber": "1234567890"
+          },
+          "cartitems": [
+            {
+              "id": "2",
+              "name": "Baby Rattle Set",
+              "details": "Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa nec massa pulvinar ipsum sed vitae vitae feugiat sem in etiam non turpis blandit lorem fringilla lacus elementum urna.",
+              "category": "Toys",
+              "price": 499,
+              "quantity": 4,
+              "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70",
+              "totalprice": 499
+            }
+          ]
+        }
+      ],
+      "block": false
+    },
+    {
+      "id": "2d75",
+      "name": "admin",
+      "email": "admin@1234",
+      "password": "12345",
+      "confirmPassword": "12345",
+      "cart": [
+        {
+          "id": "1",
+          "name": "Soft Plush Teddy Bear",
+          "details": "Pellentesque nisl ac dictum tincidunt ut viverra non, sem in sed fringilla a quis eu in et, aliquet convallis ornare pellentesque nibh phasellus tempor. Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa.",
+          "category": "Toys",
+          "price": 799,
+          "quantity": 4,
+          "image": "https://rukminim2.flixcart.com/image/612/612/kdrpksw0/stuffed-toy/7/s/z/brown-teddy-bears-huggable-valentine-loveable-for-someone-original-imafuhwqydyjugxk.jpeg?q=70",
+          "totalprice": 799
+        }
+      ],
       "orders": [],
       "block": false
     }

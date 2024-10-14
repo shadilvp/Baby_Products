@@ -14,14 +14,26 @@ const Context = ({children}) => {
     const [notLogged , setNotLogged] = useState("") // storing the error message to show in the show item page when user is not logged
     const [itemIncluded, setItemIncluded] = useState("") //storing the error message for if the item is already included in cart
     const [cartStore, setCartStore] = useState([]) // fetched the cart from uuser from json and stored in this state  
-  
+    const [filteredProducts, setFilteredProducts] = useState([]); // for finding the 
+    const [searchItems, setSearchitems] = useState("")
+
     const Email = localStorage.getItem("loginemail"); //geting the email from locale storage
     const Password = localStorage.getItem("loginpassword") // geting the password from locale storage
     
+//search Bar
+    useEffect(() => {
+        setFilteredProducts(
+            product.filter((product) =>
+                product.name.toLowerCase().includes(searchItems.toLowerCase())
+            )
+        );
+    }, [searchItems, product]);
 
+    const handleSearch = (items) => {
+        setSearchitems(items);
+    };
 
 // Fetching Json =>
-
     useEffect(()=>{
         
         const fetchdata = async () => {
@@ -209,7 +221,7 @@ const Context = ({children}) => {
 
     }
 
-// Form Validation for signup and login
+// Form Validation for signup and log in
 
     const SignUpValidation = Yup.object({ // checked the objects in the form validation at signup page by using yup
         name: Yup.string().min(3, 'Name must be at least 3 characters').required('Enter Your Full Name'),
@@ -250,20 +262,21 @@ const Context = ({children}) => {
                 
                 const existingCart = (cart2) || []  ;
                 const itemExists = cart2.some((cartitems)=> cartitems.id == item.id) // checking that the item is include or not 
-
+                
                 if (itemExists) {
                    setItemIncluded("item is already in cart");
-                //    console.log("item is already in cart");
+                   setTimeout(() => {
+                        setItemIncluded(""); // Clear message after 3 seconds
+                    }, 1000);
                    return ;
                 }
                 const updatedCartItems = [...existingCart , item]; // addinng new cart old carts
-                const updatedData = {cart : updatedCartItems}; // adding the cart
 
                 
 
                 const responce = await Axios.patch(`http://localhost:4000/users/${userId}`,{cart : updatedCartItems}); // updating the cart
                 console.log("cart updated succesfully" , responce.data);
-                setCart(updatedCartItems)
+                setCartStore(updatedCartItems)
                 navigate('/cart')
         
         } catch (error) {
@@ -311,13 +324,14 @@ const [orderDetails, setOrderDetails] = useState({
   });
 
 const HandleOrders = async (orders) => {
+    
     try {
         
         const newOrder = {
-            orderDetails : orderDetails ,
+            orderDetails : orders  ,
             cartitems : cartStore  ,
         }
-
+        console.log("orders" ,orders)
         const updatedCart = [...GetCurrentUser.orders,newOrder]
 
         const res =  await Axios.patch(`http://localhost:4000/users/${GetCurrentUser.id}`, {
@@ -338,10 +352,11 @@ const HandleOrders = async (orders) => {
                 product, PostUserDetails, userDetails , // exporting the fetching datas
                  HandleAddQuantity,HandleRemoveQuantity, HandleRemoveItem ,// exporting the quantity handlers & remove item handlers
                 SignUpValidation , LoginValidation, // exporting the form validation yup
-                HandleCart , cart, notLogged , itemIncluded ,  // exporting the cart handling
+                  notLogged , itemIncluded ,  // exporting the cart handling
                 HandleLogOut , //exporting the Handling logout BUton in login page
                 cartStore, //storing the datas and exporting to cart page 
-                orderDetails , setOrderDetails ,  HandleOrders// exporting the shipping details stored valu
+                orderDetails , setOrderDetails ,  HandleOrders,HandleCart, 
+                filteredProducts, handleSearch, searchItems
                 }}>
                 {children}
             </ProductContext.Provider>

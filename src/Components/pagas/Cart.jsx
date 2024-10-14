@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductContext } from "../../Hooks/Context"; 
 import Header from "../Header&footer/Header";
 import { useNavigate } from "react-router-dom";
@@ -6,16 +6,17 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
     const navigate = useNavigate();
     const { cartStore, HandleAddQuantity, HandleRemoveQuantity, HandleRemoveItem } = useContext(ProductContext);
-
+    
     const TotalAmount = cartStore.reduce((total, item) => total + (item.price * item.quantity), 0);
 
     return (
         <div className="bg-gray-200 min-h-screen">
             <Header />
             <div className="container mx-auto px-6 py-8">
+                
                 <h1 className="text-4xl font-bold mb-8 text-center text-gray-900">My Cart</h1>
                 <ul className="space-y-6">
-                    {cartStore.map((items, index) => (
+                    {cartStore.length === 0 ? "Cart is empty" : cartStore.map((items, index) => (
                         <li key={index} className="bg-white shadow-md rounded-lg p-6 flex items-center justify-between">
                             <div className="flex items-center">
                                 <img 
@@ -51,8 +52,8 @@ const Cart = () => {
                             </div>
                         </li>
                     ))}
-                </ul>
-                <div className="mt-8 p-6 bg-white shadow-md rounded-lg">
+                </ul>{cartStore.length !== 0 && 
+                <div className="mt-8 p-6 bg-white shadow-md rounded-lg" >
                     <h2 className="text-2xl font-bold text-gray-800">Grand Total: ₹{TotalAmount.toFixed(2)}</h2>
                     <button 
                         onClick={() => cartStore.length !== 0  ? navigate('/proceedpayment') : alert("cart is empty") } 
@@ -60,7 +61,7 @@ const Cart = () => {
                     >
                         Proceed To Payment
                     </button>
-                </div>
+                </div> }
             </div>
         </div>
     );

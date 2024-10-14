@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
 
-    const {product} = useContext(ProductContext);
+    const {product, HandleCart , filteredProducts} = useContext(ProductContext);
     const navigate = useNavigate()
 
     if(!product){ 
@@ -22,7 +22,7 @@ const Shop = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     
                     {/*displayed the product from product context by using map */}
-                     {product.map((product) => (    
+                     {filteredProducts.map((product) => (    
                         <div key={product.id} className="border rounded-lg shadow-lg p-4 flex flex-col items-center">
                             <img 
                                 src={product.image} 
@@ -32,7 +32,12 @@ const Shop = () => {
                             <h3 className="text-lg font-semibold text-center mb-2">{product.name}</h3>
                             <p className="text-gray-600 mb-2 ">Price: ₹ <strong>{product.price}</strong></p>
                             <p className="text-gray-600 mb-2">Catogory : {product.category}</p>
-                            <button onClick={()=> navigate(`/shop/${product.id}`)}> View details</button>
+                            <button onClick={()=> navigate(`/shop/${product.id}`)}
+                                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+
+                            >
+                                 View details
+                            </button>
                         </div>
                     ))}
                 </div>

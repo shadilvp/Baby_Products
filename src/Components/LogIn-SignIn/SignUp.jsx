@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { ProductContext } from "../../Hooks/Context";
 const SignUp = () => {
     const navigate = useNavigate();
-    const { PostUserDetails, userDetails , SignUPValidation} = useContext(ProductContext) // destructered the register
+    const { PostUserDetails, userDetails , SignUpValidation} = useContext(ProductContext) // destructered the register
     { console.log("signup details :", userDetails) }
     const [error, setError] = useState("");
     return (
@@ -18,7 +18,7 @@ const SignUp = () => {
                 orders: [],
                 block : false 
             }}
-            validationSchema={SignUPValidation}
+            validationSchema={SignUpValidation}
 
             onSubmit={(values) => {
                 console.log("Form Submitted", values);

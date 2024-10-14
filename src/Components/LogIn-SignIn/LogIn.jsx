@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useContext, useState } from "react";
 import { ProductContext } from "../../Hooks/Context";
-
+import Swal from "sweetalert2"
 const LogIn = () => {
     const navigate = useNavigate();
-    const { userDetails, product, HandleLogOut } = useContext(ProductContext);
+    const { userDetails, product } = useContext(ProductContext);
     const [error, setError] = useState("");
 
     return (
@@ -18,17 +18,42 @@ const LogIn = () => {
 
                 );
 
-                if (!FoundUser) {
+                const adminUser = userDetails.find(user => user.name === 'admin');
+                
+                if( adminUser.email === values.email && adminUser.password === values.password){
+                    navigate('/');
+                    localStorage.setItem("loginemail", values.email) // storing the email into local storage
+                        localStorage.setItem("loginpassword", values.password)
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: " admin Logined sussefully completed",
+                        showConfirmButton: false,
+                        timer: 5500
+                      });
+                }
+                else if(FoundUser){
+                    if (FoundUser.password === values.password && FoundUser.email === values.email) {
+                        navigate('/');
+                        localStorage.setItem("loginemail", values.email) // storing the email into local storage
+                        localStorage.setItem("loginpassword", values.password)
+                        console.log(userDetails) // storing the password into local storage
+                        localStorage.setItem("loginuserid", userDetails.id)
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Login sussefully completed",
+                            showConfirmButton: false,
+                            timer: 5500
+                        });
+                    } else {
+                        setError("wrong password");
+                    }
+                     
+                }
+                else  {
                     setError("User not found")
 
-                }
-                else {
-                    FoundUser.password === values.password ? navigate('/') : setError("wrong password");
-                    
-                    localStorage.setItem("loginemail", values.email) // storing the email into local storage
-                    localStorage.setItem("loginpassword", values.password)
-                    console.log(userDetails) // storing the password into local storage
-                    localStorage.setItem("loginuserid", userDetails.id)
                 }
 
             }}
@@ -69,8 +94,8 @@ const LogIn = () => {
                     <div className="mt-4 text-center">
                         <p className="text-[#3C4C3C]">
                             Don't have an account?
-                            <button onClick={() => navigate('/signup')} className="text-[#9ED1DB] hover:underline cursor-pointer"> Sign Up</button>
-                            <button onClick={HandleLogOut}>Log Out</button>
+                            <button onClick={() => {navigate('/signup')}} className="text-[#9ED1DB] hover:underline cursor-pointer"> Sign Up</button>
+                            
                         </p>
                     </div>
                 </div>

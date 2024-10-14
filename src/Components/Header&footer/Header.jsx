@@ -1,7 +1,24 @@
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserDetails from "../pagas/UserDetails";
+import { ProductContext } from "../../Hooks/Context";
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const [showUserDetails, setShowUserDetails] = useState(false);
+  const {handleSearch, searchItems} = useContext(ProductContext)
+
+  const handleChange = (event) => {
+    handleSearch(event.target.value)
+  }
+
+
+
+  const toggleUserDetails = () => {
+    setShowUserDetails((prev) => !prev);
+    console.log("User Details Toggle State:", !showUserDetails);
+  };
   return (
     <header className="bg-[#FAF2DD] p-4">
       <nav className="flex flex-wrap justify-between items-center">
@@ -37,17 +54,20 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search Items"
+              onChange={handleChange}
+              value={searchItems}
               className="p-2 border border-[#C6DABF] rounded-md focus:outline-none focus:ring-2 focus:ring-[#9ED1DB] w-full lg:w-auto"
             />
-            <button
-              type="submit"
-              className="px-4 py-2 bg-[#C6DABF] text-[#3C4C3C] rounded-md hover:bg-[#9ED1DB] transition ml-2">
-              Search
-            </button>
           </div>
           <div className="flex space-x-4">
             <button className="hover:text-[#9ED1DB]" onClick={() => navigate('/cart')}><box-icon type='solid' name='cart-alt'></box-icon></button>
-            <button className="hover:text-[#9ED1DB]" onClick={() => navigate('/login')}><box-icon name='user'></box-icon></button>
+            <button 
+              className="hover:text-[#9ED1DB] user-button" 
+              onClick={toggleUserDetails}
+            >
+              <box-icon name='user'></box-icon>
+            </button>
+            {showUserDetails && <UserDetails show={showUserDetails} toggle={toggleUserDetails} />}              
           </div>
         </div>
       </nav>
