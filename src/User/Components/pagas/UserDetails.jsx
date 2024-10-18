@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { ProductContext } from '../../Hooks/Context';
+import { ProductContext } from '../../../Hooks/Context';
 import { useNavigate } from 'react-router-dom';
 
 const UserDetails = ({ show, toggle }) => {

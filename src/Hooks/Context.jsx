@@ -244,6 +244,9 @@ const Context = ({children}) => {
 
             if (!Password || Password.length === 0) { // condition to check any users is logged or noot
                 setNotLogged("User want to LogIn first")
+                setTimeout(() => {
+                    setNotLogged(""); // Clear message after 3 seconds
+                }, 1000);
                 return ;
             };
                
@@ -298,15 +301,22 @@ useEffect(() => {
     //   console.log('User not found');
     }
   }, [userDetails, Email]);
-  
 
+// Reset the cart to an empty array
+
+  const clearCart = () => {
+    setCartStore([]); 
+  };
 // Handling The LogOUT        
 
-    const HandleLogOut = () => { // this function for removing the login 
+    const HandleLogOut = () => { // this function for removing the login
+        clearCart() 
         localStorage.removeItem("loginemail");
         localStorage.removeItem("loginpassword")
         navigate('/')
     }
+
+    
 
 
 // storing shipping adress details in proceed payment validation 
@@ -325,11 +335,15 @@ const [orderDetails, setOrderDetails] = useState({
 
 const HandleOrders = async (orders) => {
     
+    const Grandtotal = cartStore.reduce((total, item) => total + (item.price * item.quantity), 0);
+
     try {
         
         const newOrder = {
             orderDetails : orders  ,
             cartitems : cartStore  ,
+            TotalAmount : Grandtotal
+
         }
         console.log("orders" ,orders)
         const updatedCart = [...GetCurrentUser.orders,newOrder]
@@ -346,6 +360,37 @@ const HandleOrders = async (orders) => {
     } 
 }
 
+//maping the orderdetails to find the total orders 
+
+const allOrders = userDetails.flatMap(user => user.orders);
+
+const TotalAmount = userDetails?.flatMap(user => 
+    user?.orders?.map(order => order?.TotalAmount) || []
+  );
+  
+const totalAmountSum = TotalAmount.reduce((sum, amount) => sum + amount, 0);
+
+//Block and unblock user 
+
+const BlockStatus = async (id) => {
+    try {
+        const user = userDetails.find((user)=>user.id === id )
+        const updatedBlockStatus = !user.block;
+    
+        const res = await Axios.patch(`http://localhost:4000/users/${id}`, {block: updatedBlockStatus,});
+    
+        setUserDetails((prevDetails) =>
+            prevDetails.map((user) =>
+              user.id === id ? { ...user, block: updatedBlockStatus } : user
+            )
+          );
+    } catch (error) {
+        console.error("block status is not Changed", error);
+        
+    }
+
+}
+
     return (
        
             <ProductContext.Provider value={{
@@ -356,7 +401,8 @@ const HandleOrders = async (orders) => {
                 HandleLogOut , //exporting the Handling logout BUton in login page
                 cartStore, //storing the datas and exporting to cart page 
                 orderDetails , setOrderDetails ,  HandleOrders,HandleCart, 
-                filteredProducts, handleSearch, searchItems
+                filteredProducts, handleSearch, searchItems,
+                allOrders,totalAmountSum,BlockStatus
                 }}>
                 {children}
             </ProductContext.Provider>

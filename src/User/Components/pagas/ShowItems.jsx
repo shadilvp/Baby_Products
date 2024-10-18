@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header&footer/Header";
 import Footer from "../Header&footer/Footer";
-import { ProductContext } from "../../Hooks/Context";
+import { ProductContext } from "../../../Hooks/Context";
 
 const ShowItem = () => {
     const navigate = useNavigate()

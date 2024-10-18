@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useContext, useState } from "react";
-import { ProductContext } from "../../Hooks/Context";
+import { ProductContext } from "../../../Hooks/Context";
 const SignUp = () => {
     const navigate = useNavigate();
     const { PostUserDetails, userDetails , SignUpValidation} = useContext(ProductContext) // destructered the register

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useContext, useState } from "react";
-import { ProductContext } from "../../Hooks/Context";
+import { ProductContext } from "../../../Hooks/Context";
 import Swal from "sweetalert2"
 const LogIn = () => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const LogIn = () => {
                 const adminUser = userDetails.find(user => user.name === 'admin');
                 
                 if( adminUser.email === values.email && adminUser.password === values.password){
-                    navigate('/');
+                    navigate('/',{replace:true});
                     localStorage.setItem("loginemail", values.email) // storing the email into local storage
                         localStorage.setItem("loginpassword", values.password)
                     Swal.fire({
@@ -29,12 +29,13 @@ const LogIn = () => {
                         icon: "success",
                         title: " admin Logined sussefully completed",
                         showConfirmButton: false,
-                        timer: 5500
+                        timer: 3000
                       });
                 }
                 else if(FoundUser){
-                    if (FoundUser.password === values.password && FoundUser.email === values.email) {
-                        navigate('/');
+                    if (FoundUser.password === values.password && FoundUser.email === values.email ) {
+                        if (FoundUser.block === false) {
+                            navigate('/',{replace:true});
                         localStorage.setItem("loginemail", values.email) // storing the email into local storage
                         localStorage.setItem("loginpassword", values.password)
                         console.log(userDetails) // storing the password into local storage
@@ -44,8 +45,12 @@ const LogIn = () => {
                             icon: "success",
                             title: "Login sussefully completed",
                             showConfirmButton: false,
-                            timer: 5500
+                            timer: 3000
                         });
+                        } else {
+                          setError("User Is Blocked")  
+                        }
+                        
                     } else {
                         setError("wrong password");
                     }
