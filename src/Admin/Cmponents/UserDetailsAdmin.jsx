@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ProductContext } from '../../Hooks/Context';
 
 const UserDetailsAdmin = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { userDetails, BlockStatus } = useContext(ProductContext);
 
@@ -13,6 +14,12 @@ const UserDetailsAdmin = () => {
       {user ? (
         <div className="bg-white shadow-lg rounded-lg p-6 space-y-6">
           <div className="border-b pb-4 mb-4">
+          <button
+            onClick={() => navigate('/users')}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Back
+          </button>
             <h2 className="text-2xl font-semibold mb-2">User Details</h2>
             <p className="text-lg">
               <span className="font-semibold">Name:</span> {user.name}
@@ -23,7 +30,15 @@ const UserDetailsAdmin = () => {
             <div className="flex items-center mt-4">
               <span className="text-lg font-semibold mr-2">Status:</span>
               <span className={`text-sm px-2 py-1 rounded ${user.block ? 'bg-red-200 text-red-600' : 'bg-green-200 text-green-600'}`}>
-                {user.block ? 'User is blocked' : 'User is not blocked'}
+                {user.block ? (
+                  <div className="flex items-center gap-1">
+                    User is blocked <box-icon name='x' color='red' ></box-icon>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1">
+                    User is not blocked <box-icon name='check' color='green'></box-icon>
+                  </div>
+                )}
               </span>
             </div>
             <button
@@ -56,21 +71,32 @@ const UserDetailsAdmin = () => {
             </div>
           </div>
           <div>
-            <h2>Order Details</h2>
-            {user.orders.map((order, index)=>(
-              <div key={index}>
-                <h4>Address</h4>
-                <p><strong>Full Name:</strong> {order.orderDetails.fullName}</p>
-                <p><strong>Email:</strong> {order.orderDetails.email}</p>
-                <p><strong>Total Amount:</strong> ₹{order.TotalAmount}</p>
-                <h4>Items</h4>
-                <div>
-                  {order.cartitems.map((cartindex,cartItem)=>(
-                     <div key={cartindex}>
-                     <h1>name:{cartItem.name}</h1>
-                   </div>
+            <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
+            {user.orders.map((order, index) => (
+              <div key={index} className="bg-gray-50 p-4 rounded-lg shadow-md mb-4">
+                <h4 className="text-xl font-semibold mb-2">Address</h4>
+                <p className="text-gray-700"><strong>Full Name:</strong> {order.orderDetails.fullName}</p>
+                <p className="text-gray-700"><strong>Phone:</strong> {order.orderDetails.phone}</p>
+                <p className="text-gray-700"><strong>Shipping details:</strong> {order.orderDetails.streetAddress},<br />{order.orderDetails.city},{order.orderDetails.state},{order.orderDetails.postalCode}</p>
+
+                <h4 className="text-xl font-semibold mt-4 mb-2">Items</h4>
+                <div className="space-y-2">
+                  {order.cartitems.map((cartItem, cartindex) => (
+                    <div key={cartindex} className="bg-white p-3 rounded-lg shadow-sm flex gap-4 items-center">
+                      <img
+                        src={cartItem.image}
+                        alt={cartItem.name}
+                        className="w-20 h-20 object-cover rounded"
+                      />
+                      <div>
+                        <p className="text-lg font-semibold">{cartItem.name}</p>
+                        <p className="text-gray-700"><strong>Quantity:</strong> {cartItem.quantity}</p>
+                        <p className="text-gray-700"><strong>Item Total:</strong> ₹{cartItem.price * cartItem.quantity}</p>
+                      </div>
+                    </div>
                   ))}
                 </div>
+                <p className="text-lg font-semibold mt-4"><strong>Total Amount:</strong> ₹{order.TotalAmount}</p>
               </div>
             ))}
           </div>

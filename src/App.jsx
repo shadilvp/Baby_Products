@@ -18,6 +18,7 @@ import AllProducts from './Admin/Cmponents/AllProducts'
 import EditProducts from './Admin/Cmponents/EditProducts'
 import Users from './Admin/Cmponents/Users'
 import UserDetailsAdmin from './Admin/Cmponents/UserDetailsAdmin'
+import NoMatch from './User/Nomatches.jsx/Nomatches'
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
                     <Route path='/users' element={<Users/>}/>
                     <Route path='/users/:id' element={<UserDetailsAdmin/>}/>
 
-
+                    <Route path="*" element={<NoMatch/>}/>
                   </Routes>
                 </Context>
 

@@ -26,7 +26,10 @@ const Dashboard = () => {
             </div>
             <div className="bg-red-500 text-white p-6 rounded-lg shadow-md">
               <h2 className="text-lg font-semibold">Earnings</h2>
-              <p className="text-2xl mt-2">${totalAmountSum}</p>
+              <div className="flex items-center gap-1">
+                <box-icon name='dollar' animation='spin' color='#fcf7f7'></box-icon>
+                <p className="text-2xl">{totalAmountSum}</p>
+              </div>
             </div>
           </div>
         </div>
