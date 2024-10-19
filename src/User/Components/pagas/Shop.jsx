@@ -33,7 +33,7 @@ const Shop = () => {
                             <p className="text-gray-600 mb-2 ">Price: ₹ <strong>{product.price}</strong></p>
                             <p className="text-gray-600 mb-2">Catogory : {product.category}</p>
                             <button onClick={()=> navigate(`/shop/${product.id}`)}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+                                    className="bg-[#f0c862] text-white px-4 py-2 rounded-lg hover:bg-[#fcc947] transition duration-300"
 
                             >
                                  View details

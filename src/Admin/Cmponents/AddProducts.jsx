@@ -9,7 +9,7 @@ const AddProducts = () => {
       <div className="flex-1">
         <Navbar />
         <div>
-            Content
+            
         </div>
       </div>
     </div>

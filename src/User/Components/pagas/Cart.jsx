@@ -57,7 +57,7 @@ const Cart = () => {
                     <h2 className="text-2xl font-bold text-gray-800">Grand Total: ₹{TotalAmount.toFixed(2)}</h2>
                     <button 
                         onClick={() => cartStore.length !== 0  ? navigate('/proceedpayment') : alert("cart is empty") } 
-                        className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-full transition"
+                        className="mt-6 w-full bg-[#f3ba2a] hover:bg-[#aa872e] text-white font-bold py-3 rounded-full transition"
                     >
                         Proceed To Payment
                     </button>
