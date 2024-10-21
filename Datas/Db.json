@@ -55,15 +55,6 @@
       "image": "https://rukminim2.flixcart.com/image/612/612/kq6yefk0/baby-cereal/r/f/g/900-wheat-spinach-carrot-powder-10-months-24-months-stage-3-300-original-imag496zxhahf57b.jpeg?q=70"
     },
     {
-      "id": "7",
-      "name": "Teething Ring",
-      "details": "Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa nec massa pulvinar ipsum sed vitae vitae feugiat sem in etiam non turpis blandit lorem fringilla lacus elementum urna.",
-      "category": "Toys",
-      "price": 249,
-      "quantity": 1,
-      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/teether-soother/p/m/i/0-natural-baby-soft-silicone-dinosaur-shape-teething-toy-with-original-imah52ez6cuw4hgw.jpeg?q=70"
-    },
-    {
       "id": "8",
       "name": "Baby Nutritional Supplement",
       "details": "Pellentesque nisl ac dictum tincidunt ut viverra non, sem in sed fringilla a quis eu in et, aliquet convallis ornare pellentesque nibh phasellus tempor.",
@@ -190,13 +181,13 @@
       "confirmPassword": "12345",
       "cart": [
         {
-          "id": "2",
-          "name": "Baby Rattle Set",
+          "id": "9",
+          "name": "Baby Socks Set",
           "details": "Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa nec massa pulvinar ipsum sed vitae vitae feugiat sem in etiam non turpis blandit lorem fringilla lacus elementum urna.",
-          "category": "Toys",
-          "price": 499,
+          "category": "Dress",
+          "price": 399,
           "quantity": 1,
-          "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70"
+          "image": "https://rukminim2.flixcart.com/image/612/612/k7w8eq80/sock/f/g/y/3-6-months-unisex-baby-socks-heartbury-original-imafqyygkv5r7kxc.jpeg?q=70"
         }
       ],
       "orders": [
@@ -232,6 +223,39 @@
             }
           ],
           "TotalAmount": 1298
+        },
+        {
+          "orderDetails": {
+            "fullName": "abc",
+            "email": "hello@gmail.com",
+            "phone": "80861 85269",
+            "streetAddress": "valanchery",
+            "city": "Malappuram",
+            "state": "kerala",
+            "postalCode": "676552",
+            "cardNumber": "1234567890"
+          },
+          "cartitems": [
+            {
+              "id": "2",
+              "name": "Baby Rattle Set",
+              "details": "Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa nec massa pulvinar ipsum sed vitae vitae feugiat sem in etiam non turpis blandit lorem fringilla lacus elementum urna.",
+              "category": "Toys",
+              "price": 499,
+              "quantity": 2,
+              "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70"
+            },
+            {
+              "id": "6",
+              "name": "Organic Baby Food",
+              "details": "1st Bites Baby Food (10-24 Months) Stage-3, 100% Organic Wheat, Spinach & Carrot| Cereal  (900 g, Pack of 3, 10+ Months)",
+              "category": "Nutrition",
+              "price": 599,
+              "quantity": 1,
+              "image": "https://rukminim2.flixcart.com/image/612/612/kq6yefk0/baby-cereal/r/f/g/900-wheat-spinach-carrot-powder-10-months-24-months-stage-3-300-original-imag496zxhahf57b.jpeg?q=70"
+            }
+          ],
+          "TotalAmount": 1597
         }
       ],
       "block": false

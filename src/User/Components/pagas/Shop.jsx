@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
 
-    const {product, HandleCart , filteredProducts} = useContext(ProductContext);
+    const {product, HandleCart , filterSearchProducts} = useContext(ProductContext);
     const navigate = useNavigate()
 
     if(!product){ 
@@ -22,7 +22,7 @@ const Shop = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     
                     {/*displayed the product from product context by using map */}
-                     {filteredProducts.map((product) => (    
+                     {filterSearchProducts.map((product) => (    
                         <div key={product.id} className="border rounded-lg shadow-lg p-4 flex flex-col items-center">
                             <img 
                                 src={product.image} 

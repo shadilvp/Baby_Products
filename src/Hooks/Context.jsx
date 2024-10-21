@@ -15,15 +15,16 @@ const Context = ({children}) => {
     const [notLogged , setNotLogged] = useState("") // storing the error message to show in the show item page when user is not logged
     const [itemIncluded, setItemIncluded] = useState("") //storing the error message for if the item is already included in cart
     const [cartStore, setCartStore] = useState([]) // fetched the cart from uuser from json and stored in this state  
-    const [filteredProducts, setFilteredProducts] = useState([]); // for finding the 
-    const [searchItems, setSearchitems] = useState("")
+    const [filterSearchProducts, setFilterSearchProducts] = useState([]); // for finding the 
+    const [searchItems, setSearchitems] = useState("")// for searching the items
+    const [catagory, setCatagory] = useState('Defualt') // for filtering the products
 
     const Email = localStorage.getItem("loginemail"); //geting the email from locale storage
     const Password = localStorage.getItem("loginpassword") // geting the password from locale storage
     
 //search Bar
     useEffect(() => {
-        setFilteredProducts(
+        setFilterSearchProducts(
             product.filter((product) =>
                 product.name.toLowerCase().includes(searchItems.toLowerCase())
             )
@@ -407,6 +408,22 @@ const HandleDeleteUser = async (id) => {
     }    
 }
 
+const HandleDeleteProducts = async (id) => {
+    try {
+        await Axios.delete(`http://localhost:4000/products/${id}`)
+        setProduct((prevItems)=> prevItems.filter((items)=> items.id !== id))
+    } catch (error) {
+        console.error("product is not deleted yet", error);
+        
+    }
+}
+
+// filtering products function 
+
+    const filteredProducts = catagory === 'Defualt' 
+    ? product
+    :product.filter((items)=>items.category === catagory )
+
     return (
        
             <ProductContext.Provider value={{
@@ -417,8 +434,9 @@ const HandleDeleteUser = async (id) => {
                 HandleLogOut , //exporting the Handling logout BUton in login page
                 cartStore, //storing the datas and exporting to cart page 
                 orderDetails , setOrderDetails ,  HandleOrders,HandleCart, 
-                filteredProducts, handleSearch, searchItems,
-                allOrders,totalAmountSum,BlockStatus,HandleDeleteUser
+                filterSearchProducts, handleSearch, searchItems,
+                allOrders,totalAmountSum,BlockStatus,HandleDeleteUser,
+                filteredProducts, setCatagory,HandleDeleteProducts
                 }}>
                 {children}
             </ProductContext.Provider>
