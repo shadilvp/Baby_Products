@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserDetails from "../pagas/UserDetails";
-import { ProductContext } from "../../../Hooks/Context";
+import { ProductContext } from "../../../Context/Context";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const [showUserDetails, setShowUserDetails] = useState(false);
-  const {handleSearch, searchItems} = useContext(ProductContext)
+  const { searchItems,setSearchitems} = useContext(ProductContext)
 
   const handleChange = (event) => {
-    handleSearch(event.target.value)
+    setSearchitems(event.target.value)
   }
 
 

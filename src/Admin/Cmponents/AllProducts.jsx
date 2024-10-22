@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import Navbar from '../Navbar';
-import { ProductContext } from '../../Hooks/Context';
+import { ProductContext } from '../../Context/Context';
 import { useNavigate } from 'react-router-dom';
 
 const AllProducts = () => {
   const navigate = useNavigate();
-  const { setCatagory, filteredProducts, HandleDeleteProducts} = useContext(ProductContext);
+  const { setCatagorys, filteredProducts, HandleDeleteProducts} = useContext(ProductContext);
   const [filterButton, setFilterButton] = useState(false);
 
+ 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Navbar />
@@ -27,10 +28,10 @@ const AllProducts = () => {
         </button>
         {filterButton && (
           <div className="absolute top-35 right-9 bg-white shadow-md border border-gray-200 rounded-lg p-4 flex flex-col space-y-2 w-48">
-              <button onClick={()=>setCatagory('Defualt')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Defualt</button>
-              <button onClick={()=>setCatagory('Toys')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Toys</button>
-              <button onClick={()=>setCatagory('Dress')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Dress</button>
-              <button onClick={()=>setCatagory('Nutrition')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Nutrition</button>
+              <button onClick={()=>setCatagorys('Default')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Default</button>
+              <button onClick={()=>setCatagorys('Toys')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Toys</button>
+              <button onClick={()=>setCatagorys('Dress')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Dress</button>
+              <button onClick={()=>setCatagorys('Nutrition')} className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md">Nutrition</button>
 
               
           </div>
@@ -45,7 +46,7 @@ const AllProducts = () => {
               <img 
                 src={items.image} 
                 alt={items.name} 
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-contain"
               />
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">{items.name}</h3>

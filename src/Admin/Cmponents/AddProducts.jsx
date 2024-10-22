@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Sidebar from '../Sidebar';
 import Navbar from '../Navbar';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { ProductContext } from '../../Hooks/Context';
+import { ProductContext } from '../../Context/Context';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { ProductContext } from '../../../Hooks/Context';
+import { ProductContext } from '../../../Context/Context';
 import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2"
 const ProceedPayment = () => {

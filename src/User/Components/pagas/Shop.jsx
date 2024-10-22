@@ -1,6 +1,6 @@
 import Header from "../Header&footer/Header";
 import Footer from "../Header&footer/Footer";
-import { ProductContext } from "../../../Hooks/Context"; 
+import { ProductContext } from "../../../Context/Context"; 
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ const Shop = () => {
                             <img 
                                 src={product.image} 
                                 alt={product.name} 
-                                className="w-48 h-48 object-cover mb-4 rounded-lg"
+                                className="w-48 h-48 object-contain mb-4 rounded-lg"
                             />
                             <h3 className="text-lg font-semibold text-center mb-2">{product.name}</h3>
                             <p className="text-gray-600 mb-2 ">Price: ₹ <strong>{product.price}</strong></p>

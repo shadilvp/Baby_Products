@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { ProductContext } from '../../../Hooks/Context';
+import { ProductContext } from '../../../Context/Context';
 import { useNavigate } from 'react-router-dom';
 
 const UserDetails = ({ show, toggle }) => {
@@ -51,6 +51,7 @@ return (
           <h1 className="font-bold text-lg">{currentUser.name}</h1>
           <h3 className="text-gray-600">{currentUser.email}</h3>
         </li>
+        
         <button
           onClick={HandleLogOut}
           className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"

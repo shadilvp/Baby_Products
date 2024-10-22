@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ProductContext } from '../Hooks/Context';
+import { ProductContext } from '../Context/Context';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {

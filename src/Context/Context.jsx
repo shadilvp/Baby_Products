@@ -17,24 +17,15 @@ const Context = ({children}) => {
     const [cartStore, setCartStore] = useState([]) // fetched the cart from uuser from json and stored in this state  
     const [filterSearchProducts, setFilterSearchProducts] = useState([]); // for finding the 
     const [searchItems, setSearchitems] = useState("")// for searching the items
-    const [catagory, setCatagory] = useState('Defualt') // for filtering the products
+    const [catagorys, setCatagorys] = useState('Default') // for filtering the products
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [rating, setRating] = useState(0);
 
 
     const Email = localStorage.getItem("loginemail"); //geting the email from locale storage
     const Password = localStorage.getItem("loginpassword") // geting the password from locale storage
     
-//search Bar
-    useEffect(() => {
-        setFilterSearchProducts(
-            product.filter((product) =>
-                product.name.toLowerCase().includes(searchItems.toLowerCase())
-            )
-        );
-    }, [searchItems, product]);
 
-    const handleSearch = (items) => {
-        setSearchitems(items);
-    };
 
 // Fetching Json =>
     useEffect(()=>{
@@ -54,6 +45,23 @@ const Context = ({children}) => {
         fetchdata()
         
     },[])
+
+    //search Bar
+    // console.log('Type of product:', typeof product);
+    // console.log('Value of product:', product);
+    useEffect(() => {
+        if (Array.isArray(product)) {
+            setFilterSearchProducts(
+                product.filter((item) =>
+                    item.name && item.name.toLowerCase().includes(searchItems ? searchItems.toLowerCase() : '') // Safely handle searchItems
+                )
+            );
+        } else {
+            console.log("Product is not an array:", product); // Log warning if product is not an array
+        }
+    }, [searchItems, product]);
+    
+
 
     const PostUserDetails = async (newItem) => {
         try {
@@ -106,7 +114,7 @@ const Context = ({children}) => {
                 // console.log("User details:", userDetails);
     
                 if (checkingEmail === -1) {
-                    console.error("Email not found in userDetails.");
+                    console.log("Email not found in userDetails.");
                     return;
                 }
     
@@ -421,9 +429,16 @@ const HandleDeleteProducts = async (id) => {
 
 // filtering products function 
 
-    const filteredProducts = catagory === 'Defualt' 
-    ? product
-    :product.filter((items)=>items.category === catagory )
+useEffect(() => {
+    if (!Array.isArray(product)) {
+        console.log('Product is not an array:', product);
+        return;
+    }
+
+    setFilteredProducts(catagorys === 'Default' 
+        ? product 
+        : product.filter((items) => items.category === catagorys));
+}, [catagorys, product]);
 
 // Yup validation for updating products details in admin page 
 
@@ -446,11 +461,11 @@ const ProductUpdateSchema = Yup.object({
                 SignUpValidation , LoginValidation, // exporting the form validation yup
                   notLogged , itemIncluded ,  // exporting the cart handling
                 HandleLogOut , //exporting the Handling logout BUton in login page
-                cartStore, //storing the datas and exporting to cart page 
+                cartStore, rating, setRating,//storing the datas and exporting to cart page 
                 orderDetails , setOrderDetails ,  HandleOrders,HandleCart, 
-                filterSearchProducts, handleSearch, searchItems,
+                filterSearchProducts,setSearchitems , searchItems,
                 allOrders,totalAmountSum,BlockStatus,HandleDeleteUser,
-                filteredProducts, setCatagory,HandleDeleteProducts,
+                filteredProducts, setCatagorys,HandleDeleteProducts,
                 ProductUpdateSchema
                 }}>
                 {children}

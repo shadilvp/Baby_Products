@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Sidebar from '../Sidebar';
 import Navbar from '../Navbar';
-import { ProductContext } from '../../Hooks/Context';
+import { ProductContext } from '../../Context/Context';
 
 const Dashboard = () => {
   const {product, userDetails,allOrders, totalAmountSum} = useContext(ProductContext)

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ProductContext } from '../../Hooks/Context';
+import { ProductContext } from '../../Context/Context';
 
 const UserDetailsAdmin = () => {
   const navigate = useNavigate();
