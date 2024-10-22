@@ -1,31 +1,26 @@
 {
   "products": [
     {
-      "id": "1",
       "name": "Soft Plush Teddy Bear",
+      "price": 799,
       "details": "Pellentesque nisl ac dictum tincidunt ut viverra non, sem in sed fringilla a quis eu in et, aliquet convallis ornare pellentesque nibh phasellus tempor. Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa.",
       "category": "Toys",
-      "price": 799,
-      "quantity": 1,
-      "image": "https://rukminim2.flixcart.com/image/612/612/kdrpksw0/stuffed-toy/7/s/z/brown-teddy-bears-huggable-valentine-loveable-for-someone-original-imafuhwqydyjugxk.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/612/612/kdrpksw0/stuffed-toy/7/s/z/brown-teddy-bears-huggable-valentine-loveable-for-someone-original-imafuhwqydyjugxk.jpeg?q=70",
+      "id": "1"
     },
     {
-      "id": "2",
       "name": "Baby Rattle Set",
-      "details": "Egestas fringilla eu pellentesque phasellus sed varius non ut tincidunt sed massa nec massa pulvinar ipsum sed vitae vitae feugiat sem in etiam non turpis blandit lorem fringilla lacus elementum urna.",
+      "price": "500",
       "category": "Toys",
-      "price": 499,
-      "quantity": 1,
-      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70",
+      "id": "2"
     },
     {
-      "id": "3",
       "name": "Organic Cotton Onesie",
-      "details": "Pellentesque nisl ac dictum tincidunt ut viverra non, sem in sed fringilla a quis eu in et, aliquet convallis ornare pellentesque nibh phasellus tempor.",
+      "price": "9990",
       "category": "Dress",
-      "price": 999,
-      "quantity": 1,
-      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/kids-dungaree-romper/u/z/n/0-1-month-110953-vparents-original-imahfxnfemhzzhzw.jpeg?q=70"
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/kids-dungaree-romper/u/z/n/0-1-month-110953-vparents-original-imahfxnfemhzzhzw.jpeg?q=70",
+      "id": "3"
     },
     {
       "id": "4",
@@ -170,6 +165,27 @@
       "price": 4599,
       "quantity": 1,
       "image": "https://rukminim2.flixcart.com/image/612/612/k8g8knk0/stroller-pram/h/j/j/sunshine-baby-stroller-18154-stroller-luvlap-original-imafqgh2dmxufqt9.jpeg?q=70"
+    },
+    {
+      "id": "21",
+      "name": "DECRONICS",
+      "price": "330",
+      "category": "Toys",
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/shower-cap/v/f/r/1-pc-baby-head-back-safety-protector-set-of-1-pc-baby-shower-original-imagrejxkgvmdys7.jpeg?q=70"
+    },
+    {
+      "id": "22",
+      "name": "Rash Cream",
+      "price": "499",
+      "category": "Nutrition",
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-care-combo/p/q/0/plant-powered-diaper-rash-cream-for-babies-50gm-after-bite-original-imah2uudbxwzu2h9.jpeg?q=70"
+    },
+    {
+      "id": "23",
+      "name": "Rash Cream",
+      "price": "499",
+      "category": "Nutrition",
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-care-combo/p/q/0/plant-powered-diaper-rash-cream-for-babies-50gm-after-bite-original-imah2uudbxwzu2h9.jpeg?q=70"
     }
   ],
   "users": [

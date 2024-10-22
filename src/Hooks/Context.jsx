@@ -19,6 +19,7 @@ const Context = ({children}) => {
     const [searchItems, setSearchitems] = useState("")// for searching the items
     const [catagory, setCatagory] = useState('Defualt') // for filtering the products
 
+
     const Email = localStorage.getItem("loginemail"); //geting the email from locale storage
     const Password = localStorage.getItem("loginpassword") // geting the password from locale storage
     
@@ -424,10 +425,23 @@ const HandleDeleteProducts = async (id) => {
     ? product
     :product.filter((items)=>items.category === catagory )
 
+// Yup validation for updating products details in admin page 
+
+
+
+const ProductUpdateSchema = Yup.object({
+    name: Yup.string().required("Product name is required."),
+    price: Yup.number().required("Price is required.").positive("Price must be a positive number."),
+    category: Yup.string().required("Category is required."),
+    image: Yup.string().url("Enter a valid URL.").required("Image is required.")
+});
+
+
+
     return (
        
             <ProductContext.Provider value={{
-                product, PostUserDetails, userDetails , // exporting the fetching datas
+                product,setProduct, PostUserDetails, userDetails , // exporting the fetching datas
                  HandleAddQuantity,HandleRemoveQuantity, HandleRemoveItem ,// exporting the quantity handlers & remove item handlers
                 SignUpValidation , LoginValidation, // exporting the form validation yup
                   notLogged , itemIncluded ,  // exporting the cart handling
@@ -436,7 +450,8 @@ const HandleDeleteProducts = async (id) => {
                 orderDetails , setOrderDetails ,  HandleOrders,HandleCart, 
                 filterSearchProducts, handleSearch, searchItems,
                 allOrders,totalAmountSum,BlockStatus,HandleDeleteUser,
-                filteredProducts, setCatagory,HandleDeleteProducts
+                filteredProducts, setCatagory,HandleDeleteProducts,
+                ProductUpdateSchema
                 }}>
                 {children}
             </ProductContext.Provider>
