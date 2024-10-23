@@ -1,19 +1,16 @@
 {
   "products": [
     {
-      "values": {
-        "name": "Soft Plush Teddy Bear",
-        "price": "700",
-        "details": "",
-        "category": "Dress",
-        "image": "https://rukminim2.flixcart.com/image/612/612/kdrpksw0/stuffed-toy/7/s/z/brown-teddy-bears-huggable-valentine-loveable-for-someone-original-imafuhwqydyjugxk.jpeg?q=70"
-      },
-      "productrate": 0,
+      "name": "Soft Plush Teddy Bear",
+      "price": "700",
+      "details": "",
+      "category": "Toys",
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/shower-cap/v/f/r/1-pc-baby-head-back-safety-protector-set-of-1-pc-baby-shower-original-imagrejxkgvmdys7.jpeg?q=70",
       "id": "1"
     },
     {
       "name": "Baby Rattle Set",
-      "price": "100000000",
+      "price": "300",
       "details": "",
       "category": "Toys",
       "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/baby-rattle/l/d/k/15-pcs-set-of-rattles-and-animal-shape-toys-rattle-learn-with-original-imagnq9dg57yjtpn.jpeg?q=70",

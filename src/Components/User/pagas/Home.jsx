@@ -1,7 +1,7 @@
 import Header from "../Header&footer/Header";
 import Footer from "../Header&footer/Footer";
 import { Link } from "react-router-dom";
-import Dashboard from "../../../Admin/Cmponents/Dashboard";
+import Dashboard from "../../Admin/Pages/Dashboard";
 
 const Home = () => {
     const babyImageUrl = "https://smp-is.stylemepretty.com/wp-content/submissions/uploads/cheryl.m.photography@gmail.com/47097/dankenbring_23$!1125x.jpg";

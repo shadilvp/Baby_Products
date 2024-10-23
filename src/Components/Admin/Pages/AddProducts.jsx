@@ -2,77 +2,10 @@ import React, { useContext } from 'react';
 import Sidebar from '../Sidebar';
 import Navbar from '../Navbar';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { ProductContext } from '../../Context/Context';
+import { ProductContext } from '../../../Context/Context';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
-
-// const AddProducts = () => {
-//   const { product, ProductUpdateSchema , setProduct} = useContext(ProductContext);
-
-//   return (
-//     <div className="flex">
-//       <Sidebar />
-//       <div className="flex-1">
-//         <Navbar />
-//         <div>
-//           <Formik
-//             initialValues={{
-//               name: "",
-//               price: "",
-//               category: "",
-//               image: "",
-//             }}
-//             validationSchema={ProductUpdateSchema}
-//             onSubmit={async (values) => {
-//               try {
-//                 const id = String(product.length + 2)
-//                 const submit = {...values, id}
-//                 console.log("added products",submit)
-//                 await axios.post("http://localhost:4000/products", submit)
-//                 setProduct((prevProducts) => [...prevProducts, submit]);
-//               } catch (error) {
-//                 console.error("new item is didnt added", error);
-//               }
-//             }}
-//           >
-//             <Form>
-//               <div>
-//                 <label htmlFor="name">Name: </label>
-//                 <Field type="text" id="name" name="name" />
-//                 <ErrorMessage name="name" component="div" />
-//               </div>
-//               <div>
-//                 <label htmlFor="price">Price: </label>
-//                 <Field type="text" id="price" name="price" />
-//                 <ErrorMessage name="price" component="div" />
-//               </div>
-//               <div>
-//                 <label htmlFor="category">Category: </label>
-//                 <Field as="select" id="category" name="category">
-//                   <option value="">Select Category</option>
-//                   <option value="Toys">Toys</option>
-//                   <option value="Dress">Dress</option>
-//                   <option value="Nutrition">Nutrition</option>
-//                 </Field>
-//                 <ErrorMessage name="category" component="div" />
-//               </div>
-//               <div>
-//                 <label htmlFor="image">Image: </label>
-//                 <Field type="text" id="image" name="image" />
-//                 <ErrorMessage name="image" component="div" />
-//               </div>
-//               <button type="submit">Add</button>
-//             </Form>
-//           </Formik>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default AddProducts;
-
 
 const AddProducts = () => {
   const { product, ProductUpdateSchema, setProduct } = useContext(ProductContext);

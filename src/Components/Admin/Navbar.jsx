@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { ProductContext } from '../Context/Context';
-import { useNavigate } from 'react-router-dom';
+import { ProductContext } from '../../Context/Context';
 
 const Navbar = () => {
   const {HandleLogOut} = useContext(ProductContext);

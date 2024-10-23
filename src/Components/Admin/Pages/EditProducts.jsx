@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { ProductContext } from '../../Context/Context';
+import { ProductContext } from '../../../Context/Context';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import Sidebar from '../Sidebar';

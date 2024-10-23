@@ -3,7 +3,6 @@ import  Axios  from "axios";
 import * as Yup from 'yup';
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import UserDetails from "../User/Components/pagas/UserDetails";
 
 export const ProductContext = createContext();
 const Context = ({children}) => {
