@@ -18,6 +18,9 @@ const Sidebar = () => {
         <li>
           <Link to="/allproducts" className="hover:underline">All Products</Link>
         </li>
+        <li>
+          <Link to="/orders" className="hover:underline">Orders</Link>
+        </li>
       </ul>
     </div>
   );
