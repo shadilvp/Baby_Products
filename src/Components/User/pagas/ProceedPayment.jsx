@@ -5,12 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadAddresses } from '../../../redux/slices/addressSlice';
 import { currentUserCart } from '../../../redux/slices/cartSlice';
 import { createOrder } from '../../../redux/slices/orderSlice';
+import { createRazorpayOrder,razorPayPayment } from '../../../redux/slices/orderSlice';
 
 const ProceedPayment = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { addresses } = useSelector((state) => state.address);
     const cartStore = useSelector((state) => state.cart.items);
+    const {razorpayOrder} = useSelector((state)=>state.order)
     const userId = localStorage.getItem("userId");
     const [paymentMethod, setPaymentMethod] = useState('Cash On Delivery');
     
@@ -29,9 +31,10 @@ const ProceedPayment = () => {
             });
             return;
         }
-
+    
         try {
             if (paymentMethod === 'Cash On Delivery') {
+                const userId = localStorage.getItem("userId")
                 // For Cash On Delivery, create the order directly
                 dispatch(createOrder({ userId, address: addressId }));
                 Swal.fire({
@@ -43,43 +46,40 @@ const ProceedPayment = () => {
                 });
                 navigate('/shop');
             } else if (paymentMethod === 'Razorpay') {
-                // For Razorpay, create an order on the backend and get the payment details
-                const response = await fetch(`/api/razorpay/order/${userId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ address: addressId, totalAmount: cartStore.totalAmount })
-                });
-                const data = await response.json();
-
-                if (data.success) {
-                    const { razorpay_order_id, razorpay_payment_options } = data;
-
-                    // Initiate Razorpay payment
+                // For Razorpay, initiate the payment process
+                const userId = localStorage.getItem("userId")
+                 dispatch(
+                    createRazorpayOrder({
+                        userId,
+                        totalAmount: cartStore.totalAmount,
+                    }),
+                );
+                console.log(razorpayOrder)
+                if (razorpayOrder?.success) {
+                    console.log("object")
+                    const { razorpay_order_id } = razorpayOrder;
+    
                     const options = {
-                        key: process.env.REACT_APP_RAZORPAY_KEY, // Replace with your Razorpay key from .env
-                        amount: cartStore.totalAmount * 100, // Amount in paise
+                        key: "rzp_test_T8EGXDuDs0Ddx6", 
+                        amount: cartStore.totalAmount * 100, 
                         currency: "INR",
                         name: "Baby Products",
                         description: "Order Payment",
                         order_id: razorpay_order_id,
-                        handler: function (response) {
-                            // Send payment details to the backend after successful payment
-                            fetch(`/api/razorpay/payment/${userId}`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    orderId: razorpay_order_id,
-                                    paymentId: response.razorpay_payment_id,
-                                    signature: response.razorpay_signature,
-                                })
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.success) {
+                        handler: async function (response) {
+                            console.log("hy")
+                            try {
+                                // Handle payment success
+                                const userId = localStorage.getItem("userId")
+
+                                dispatch(razorPayPayment(
+                                    {   userId,
+                                        address: addressId,
+                                        orderId: razorpay_order_id,
+                                        paymentId: response.razorpay_payment_id,
+                                        signature: response.razorpay_signature,
+                                    }
+                                ));
                                     Swal.fire({
                                         position: 'top-end',
                                         icon: 'success',
@@ -88,27 +88,27 @@ const ProceedPayment = () => {
                                         timer: 1500,
                                     });
                                     navigate('/shop');
-                                } else {
-                                    Swal.fire({
-                                        position: 'top-end',
-                                        icon: 'error',
-                                        title: 'Payment failed. Please try again!',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                    });
-                                }
-                            })
+                            } catch (error) {
+                                console.error("Payment Verification Error:", error);
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Payment verification failed. Please try again!',
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                });
+                            }
                         },
                         prefill: {
                             name: localStorage.getItem("userName"),
                             email: localStorage.getItem("loginemail"),
-                            contact: localStorage.getItem("userContact")
+                            contact: localStorage.getItem("userContact"),
                         },
                         theme: {
-                            color: "#3399cc"
-                        }
+                            color: "#3399cc",
+                        },
                     };
-
+    
                     const razorpay = new window.Razorpay(options);
                     razorpay.open();
                 } else {
@@ -120,6 +120,11 @@ const ProceedPayment = () => {
                         timer: 2000,
                     });
                 }
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid payment method selected.",
+                });
             }
         } catch (error) {
             console.error("Order Confirmation Error:", error);
@@ -132,6 +137,7 @@ const ProceedPayment = () => {
             });
         }
     };
+    
 
     if (!cartStore || cartStore.length === 0) {
         return (

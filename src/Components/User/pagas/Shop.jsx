@@ -16,7 +16,6 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch(fetchProducts({ page: currentPage, limit: 20, category: selectedCategory }));
-    console.log(items);
     
   }, [dispatch, currentPage, selectedCategory]);
 
@@ -30,20 +29,11 @@ const Shop = () => {
 
   // Pagination functions
   const item = items.filter((item) => item.isDeleted === false);
-  console.log("object1", items)
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Header />
       <div className="p-8">
-        {/* Back Button */}
-        <button
-          onClick={() => navigate("/dashboard")}
-          className="mb-4 text-blue-500 hover:text-blue-700 font-semibold transition-colors duration-300"
-        >
-          &lt; Back
-        </button>
-
         {/* Filter Button */}
         <button
           onClick={() => setFilterButton(!filterButton)}

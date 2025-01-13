@@ -25,9 +25,7 @@ export const fetchProducts = createAsyncThunk(
     try {
       const response = await axios.get(
         `http://localhost:4000/api/admin/products?page=${page}&limit=${limit}&category=${catagory}`
-      );
-      console.log(response.data);
-      
+      );      
       return {
         products: response.data.products,
         totalProducts: response.data.totalProducts,

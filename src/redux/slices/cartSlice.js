@@ -20,7 +20,7 @@ export const addToCart = createAsyncThunk(
             return rejectWithValue(error.response.data);
         }
     }
-)
+);
 
 
 

@@ -19,7 +19,6 @@ const Cart = () => {
     
 
     const cartStore = useSelector((state)=> state.cart.items)
-    console.log("cartStore",cartStore)
     
     const HandleAddQuantity = (productId) => {
         dispatch(

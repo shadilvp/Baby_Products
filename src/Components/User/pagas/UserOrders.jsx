@@ -14,7 +14,6 @@ function UserOrders() {
     },[dispatch]);
 
     const {specificOrder} = useSelector((state)=> state.order);
-    console.log(specificOrder)
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100 pt-10">

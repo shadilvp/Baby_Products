@@ -42,6 +42,38 @@ export const fetchingAllOrders = createAsyncThunk(
     }
 );
 
+export const createRazorpayOrder = createAsyncThunk(
+    'order/createRazorpayOrder',
+    async ({ userId,  totalAmount }, { rejectWithValue }) => {
+        try {
+            console.log("totalAmount",totalAmount)
+            console.log("userId",userId)
+            const response = await axios.post(`http://localhost:4000/api/users/razorpay/order/${userId}`,
+                {  totalAmount }
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Razorpay Order Error:", error.response || error.message);
+            return rejectWithValue(error.response?.data || error.message);
+        }
+    }
+);
+
+export const razorPayPayment = createAsyncThunk(
+    "razorpay/payment",
+    async ({userId, address, orderId, paymentId, signature},{rejectWithValue}) => {
+        try {
+        const response = await axios.post(`http://localhost:4000/api/users/razorpay/payment/${userId}`,
+            {address, orderId, paymentId, signature}
+        );
+        return response.data;
+      } catch (error) {
+        console.error("Razorpay Order Error:", error.response || error.message);
+        return rejectWithValue(error.response?.data || error.message);
+      }  
+    }
+)
+
 const orderSlice = createSlice({
     name: 'order',
     initialState: {
@@ -50,6 +82,8 @@ const orderSlice = createSlice({
         specificOrder : [],
         allOrders: [],
         loading: false,
+        razorpayOrder: null,
+        paymentSuccess:null,
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -58,18 +92,14 @@ const orderSlice = createSlice({
             .addCase(fetchUserOrders.pending, (state)=>{
                 state.loading = true;
                 state.error = null;
-                console.log("a")
             })
             .addCase(fetchUserOrders.fulfilled, (state,action) => {
-                // console.log("Action Payload:", action.payload);
                 state.loading = false;
                 state.specificOrder = action.payload;
-                // console.log("b") 
             })
             .addCase(fetchUserOrders.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-                console.log("c")
             })
 
             //creating a order
@@ -96,8 +126,35 @@ const orderSlice = createSlice({
             .addCase(fetchingAllOrders.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+            })
+            
+            //razorPay
+            .addCase(createRazorpayOrder.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(createRazorpayOrder.fulfilled, (state, action) => {
+                state.loading = false;
+                state.razorpayOrder = action.payload;
+            })
+            .addCase(createRazorpayOrder.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            
+            //razorpayPayment
+            .addCase(razorPayPayment.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(razorPayPayment.fulfilled, (state, action) => {
+                state.loading = false;
+                state.order = action.payload;
+            })
+            .addCase(razorPayPayment.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
             });
     }
 });
 
 export default orderSlice.reducer;
+
