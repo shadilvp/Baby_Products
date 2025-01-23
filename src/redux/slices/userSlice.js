@@ -24,7 +24,7 @@ export  const loginUser = createAsyncThunk(
       const user = response.data.data;
       const accessToken = response.data.accessToken;
       localStorage.setItem('userId',user._id);
-      localStorage.setItem('userEmail',user.email);
+      localStorage.setItem('roll',user.roll);
       localStorage.setItem('accessToken',accessToken);
       return response.data.data; 
       

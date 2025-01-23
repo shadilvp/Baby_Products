@@ -1,6 +1,7 @@
 
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
+import ProtectedRoute from './protected.jsx'
 // User
 import Home from './Components/User/pagas/Home.jsx'
 import About from './Components/User/pagas/About'
@@ -13,8 +14,7 @@ import ShowItem from './Components/User/pagas/ShowItems'
 import AddressPage from './Components/User/pagas/addressPage.jsx'
 import ProceedPayment from './Components/User/pagas/ProceedPayment'
 
-// import UserDetails from './Components/User/pagas/UserDetails'
-// // admin
+// admin
 import Dashboard from './Components/Admin/Pages/Dashboard'
 import AddProducts from './Components/Admin/Pages/AddProducts'
 import AllProducts from './Components/Admin/Pages/AllProducts'
@@ -26,15 +26,12 @@ import Orders from './Components/Admin/Pages/Orders.jsx'
 import NoMatch from './Components/Nomatches.jsx/Nomatches.jsx'
 import UserOrders from './Components/User/pagas/userOrders.jsx'
 
-// import Context from './Context/Context.jsx'
-
 
 function App() {
   
   return (
     <>
 
-                {/* <Context> */}
                   <Routes>
                     <Route path='/login' element={<LogIn/>}/>
                     <Route path='/signup' element={<SignUp/>}/>
@@ -49,22 +46,40 @@ function App() {
                     <Route path='/about' element={<About/>}/>
                     <Route path='/contact' element={<Contact/>}/>
 
-                    {/* 
-                    <Route path='/userdetails' element={<UserDetails/>}/> */}
 
                     {/* admin */}
-                    <Route path='/dashboard' element={<Dashboard/>}/>
-                    <Route path='/users' element={<Users/>}/>
-                    <Route path='/users/:userId' element={<UserDetailsAdmin/>}/> 
-                    <Route path='/allproducts' element={<AllProducts/>}/>
-                    <Route path='/allproducts/:productId' element={<EditProducts/>}/>
-                    <Route path='/addproducts' element={<AddProducts/>}/>
-                    <Route path='/orders' element={<Orders/>}/>
+                    <Route
+                    path="/dashboard"
+                    element={<ProtectedRoute element={<Dashboard />} isAdmin={true} />}
+                    />
+                    <Route
+                    path="/users"
+                    element={<ProtectedRoute element={<Users />} isAdmin={true} />}
+                    />
+                    <Route
+                      path="/users/:userId"
+                      element={<ProtectedRoute element={<UserDetailsAdmin />} isAdmin={true} />}
+                    />
+                    <Route
+                      path="/allproducts"
+                      element={<ProtectedRoute element={<AllProducts />} isAdmin={true} />}
+                    />
+                    <Route
+                      path="/allproducts/:productId"
+                      element={<ProtectedRoute element={<EditProducts />} isAdmin={true} />}
+                    />
+                    <Route
+                      path="/addproducts"
+                      element={<ProtectedRoute element={<AddProducts />} isAdmin={true} />}
+                    />
+                    <Route
+                      path="/orders"
+                      element={<ProtectedRoute element={<Orders />} isAdmin={true} />}
+                    />
 
-
+                    {/* No pages */}
                     <Route path="*" element={<NoMatch/>}/>
                   </Routes>
-                {/* </Context> */}
 
     </>
   )

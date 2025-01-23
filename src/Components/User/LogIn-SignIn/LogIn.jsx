@@ -25,6 +25,7 @@ const LogIn = () => {
                     showConfirmButton: false,
                     timer: 3000,
                 });
+                localStorage.setItem("roll")
             } else {
                 navigate('/');
                 Swal.fire({
