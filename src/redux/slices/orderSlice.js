@@ -7,7 +7,7 @@ export const createOrder = createAsyncThunk(
     async ({ userId, address },{rejectWithValue}) => {
         try {
             console.log("id",userId)
-        const response = await axios.post(`http://localhost:4000/api/users/orders/${userId}`, { address });
+        const response = await axios.post(`https://baby-products-serverside.onrender.com/api/users/orders/${userId}`, { address });
         return response.data;
         } catch(error) {
             console.error("Order API Error:", error.response || error.message);
@@ -20,7 +20,7 @@ export const fetchUserOrders = createAsyncThunk(
     'order/fetchUserOrders',
     async (userId, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/users/orders/${userId}`);
+            const response = await axios.get(`https://baby-products-serverside.onrender.com/api/users/orders/${userId}`);
             return response.data.orders;
         } catch (error) {
             console.error("Fetch Orders API Error:", error.response || error.message);
@@ -33,7 +33,7 @@ export const fetchingAllOrders = createAsyncThunk(
     "admin/orders",
     async (_, {rejectWithValue}) => {
         try {
-            const response = await axios.get("http://localhost:4000/api/users/Orders/allOrders");
+            const response = await axios.get("https://baby-products-serverside.onrender.com/api/users/Orders/allOrders");
             return response.data.orders
         } catch (error) {
             return rejectWithValue(error.response?.data || error.message);
@@ -48,7 +48,7 @@ export const createRazorpayOrder = createAsyncThunk(
         try {
             console.log("totalAmount",totalAmount)
             console.log("userId",userId)
-            const response = await axios.post(`http://localhost:4000/api/users/razorpay/order/${userId}`,
+            const response = await axios.post(`https://baby-products-serverside.onrender.com/api/users/razorpay/order/${userId}`,
                 {  totalAmount }
             );
             return response.data;
@@ -63,7 +63,7 @@ export const razorPayPayment = createAsyncThunk(
     "razorpay/payment",
     async ({userId, address, orderId, paymentId, signature},{rejectWithValue}) => {
         try {
-        const response = await axios.post(`http://localhost:4000/api/users/razorpay/payment/${userId}`,
+        const response = await axios.post(`https://baby-products-serverside.onrender.com/api/users/razorpay/payment/${userId}`,
             {address, orderId, paymentId, signature}
         );
         return response.data;

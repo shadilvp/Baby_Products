@@ -6,7 +6,7 @@ export const addToCart = createAsyncThunk(
     "cart/addToCart",
     async ({ userId, productId, quantity ,accessToken}, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`http://localhost:4000/api/users/cart/${userId}`, 
+            const response = await axios.post(`https://baby-products-serverside.onrender.com/api/users/cart/${userId}`, 
               { productId, quantity },
               {
                 headers: {
@@ -30,7 +30,7 @@ export const currentUserCart = createAsyncThunk(
     
     async (userId,{rejectWithValue}) => { 
         try {
-            const response = await axios.get(`http://localhost:4000/api/users/cart/${userId}`);
+            const response = await axios.get(`https://baby-products-serverside.onrender.com/api/users/cart/${userId}`);
             return response.data.cart // Return the current cart from the response
         } catch (error) {
             return rejectWithValue(error.response.data.message);  
@@ -45,7 +45,7 @@ export const updateCartQuantity = createAsyncThunk(
         try {
             const accessToken = localStorage.getItem("accessToken")
             const response = await axios.post(
-                `http://localhost:4000/api/users/cart-quantity`,
+                `https://baby-products-serverside.onrender.com/api/users/cart-quantity`,
                 { productId, action },
                 {
                   headers: {
@@ -68,7 +68,7 @@ export const removeFromCart = createAsyncThunk(
         try {
           const accessToken = localStorage.getItem("accessToken")
             const response = await axios.post(
-                "http://localhost:4000/api/users/cart",
+                "https://baby-products-serverside.onrender.com/api/users/cart",
                 { productId },
                 {
                   headers: {

@@ -6,7 +6,7 @@ export const loadAddresses = createAsyncThunk(
     "address/loadAddresses",
     async (userId, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/users/profile/address/${userId}`);
+            const response = await axios.get(`https://baby-products-serverside.onrender.com/api/users/profile/address/${userId}`);
             return response.data.addresses;
         } catch (error) {
             return rejectWithValue(error.response.data.message);
@@ -20,7 +20,7 @@ export const addAddress = createAsyncThunk(
     async ({ userId, addressData }, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                `http://localhost:4000/api/users/profile/address/${userId}`,
+                `https://baby-products-serverside.onrender.com/api/users/profile/address/${userId}`,
                 addressData
             );
             return response.data.message;  // New address

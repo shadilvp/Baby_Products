@@ -5,7 +5,7 @@ export const fetchDashboardData = createAsyncThunk(
     "admin/dashboard",
     async (_,{rejectWithValue}) => {
         try {
-            const response = await axios.get("http://localhost:4000/api/admin/dashboard",{
+            const response = await axios.get("https://baby-products-serverside.onrender.com/api/admin/dashboard",{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                   },

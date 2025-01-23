@@ -9,7 +9,7 @@ export const addNewProduct  = createAsyncThunk(
   async (newProduct, {rejectWithValue}) => {
     try {
       console.log("reached",newProduct)
-      const response = await axios.post("http://localhost:4000/api/admin/addproduct",newProduct)
+      const response = await axios.post("https://baby-products-serverside.onrender.com/api/admin/addproduct",newProduct)
       console.log("added",response.data)
       return response.data.newProduct
     } catch (error) {
@@ -24,7 +24,7 @@ export const fetchProducts = createAsyncThunk(
   async ({ page = 1, limit = 20 , catagory="" }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/admin/products?page=${page}&limit=${limit}&category=${catagory}`
+        `https://baby-products-serverside.onrender.com/api/admin/products?page=${page}&limit=${limit}&category=${catagory}`
       );      
       return {
         products: response.data.products,
@@ -43,7 +43,7 @@ export const fetchSpecificProduct = createAsyncThunk(
     "product/fetchSpecificProduct",
     async (productId, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/users/products/${productId}`);
+            const response = await axios.get(`https://baby-products-serverside.onrender.com/api/users/products/${productId}`);
             return response.data.message; 
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -55,7 +55,7 @@ export const editProduct = createAsyncThunk(
   "admin/editProduct",
   async ({productId, values},{rejectWithValue}) => {
   try {
-    const response = await axios.patch(`http://localhost:4000/api/admin/products/${productId}/edit`, values);
+    const response = await axios.patch(`https://baby-products-serverside.onrender.com/api/admin/products/${productId}/edit`, values);
     return response.data.data
   } catch (error) {
     return rejectWithValue(error.response.data);
@@ -66,7 +66,7 @@ export const editProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "admin/deleteProduct",
   async (productId,{rejectWithValue}) => {
-    const response = await axios.delete(`http://localhost:4000/api/admin/product-delete/${productId}`)
+    const response = await axios.delete(`https://baby-products-serverside.onrender.com/api/admin/product-delete/${productId}`)
     return response.data.data
   }
 )

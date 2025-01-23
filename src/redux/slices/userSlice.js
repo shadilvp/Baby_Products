@@ -5,7 +5,7 @@ export const registerUser = createAsyncThunk(
   'user/register',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:4000/api/register', userData);
+      const response = await axios.post('https://baby-products-serverside.onrender.com/api/register', userData);
       return response.data; 
     } catch (error) {
       console.log(error.response);
@@ -19,7 +19,7 @@ export  const loginUser = createAsyncThunk(
   'user/login',
   async (userData,{rejectWithValue}) => {
     try {
-      const response = await axios.post('http://localhost:4000/api/login',userData);
+      const response = await axios.post('https://baby-products-serverside.onrender.com/api/login',userData);
       console.log(response.data)
       const user = response.data.data;
       const accessToken = response.data.accessToken;
@@ -38,7 +38,7 @@ export const fetchCurrentUser = createAsyncThunk(
   "user/currentUser",
   async (userId,{rejectWithValue}) => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/users/${userId}`);
+      const response = await axios.get(`https://baby-products-serverside.onrender.com/api/users/${userId}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -50,7 +50,7 @@ export const fetchSpecificUser = createAsyncThunk(
   "admin/specificUser",
   async (userId,{rejectWithValue}) => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/admin/users/${userId}`);
+      const response = await axios.get(`https://baby-products-serverside.onrender.com/api/admin/users/${userId}`);
       
       return response.data.user;
     } catch (error) {
@@ -64,7 +64,7 @@ export const fetchUsers = createAsyncThunk(
   'users/fetchUsers',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:4000/api/admin/users');
+            const response = await axios.get('https://baby-products-serverside.onrender.com/api/admin/users');
             console.log("all users", response.data.users)
             return response.data.users
         } catch (error) {
@@ -77,7 +77,7 @@ export const deleteUserTemp = createAsyncThunk(
   "admin/deleteUserTemp",
   async (userId,{rejectWithValue}) => {
     try {
-      const response = await axios.delete(`http://localhost:4000/api/admin/users/${userId}/delete`);
+      const response = await axios.delete(`https://baby-products-serverside.onrender.com/api/admin/users/${userId}/delete`);
       return response.data.user
     } catch (error) {
       return rejectWithValue(error.response.data.message || 'An error occurred');
@@ -90,7 +90,7 @@ export const deleteUserPermanently = createAsyncThunk(
   "admin/deleteUserPermanently",
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`http://localhost:4000/api/admin/users/${userId}/delete-permenently`);
+      const response = await axios.delete(`https://baby-products-serverside.onrender.com/api/admin/users/${userId}/delete-permenently`);
       return userId;
     } catch (error) {
       return rejectWithValue(error.response.data.message || 'An error occurred');
@@ -102,7 +102,7 @@ export const blockUser = createAsyncThunk(
   "admin/userBlock",
   async (userId,{rejectWithValue}) => {
     try {
-      const response = await axios.patch(`http://localhost:4000/api/admin/users/${userId}/block`);
+      const response = await axios.patch(`https://baby-products-serverside.onrender.com/api/admin/users/${userId}/block`);
       console.log("object",response.data.user)
       return response.data.user
     } catch (error) {

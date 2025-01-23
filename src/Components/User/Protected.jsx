@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ element, isAdmin }) => {
 
-    const currentUser = JSON.parse(localStorage.getItem('roll'));
+    const currentUser = localStorage.getItem('roll');
 
     if (!currentUser) {
         return <Navigate to="/login" />;
