@@ -3,7 +3,7 @@ import { fetchUserOrders } from '../../../redux/slices/orderSlice';
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-function UserOrders() {
+const UserOrders=()=> {
     const userId = localStorage.getItem("userId");
     const dispatch = useDispatch();
     const navigate = useNavigate()

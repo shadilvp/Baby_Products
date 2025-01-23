@@ -25,7 +25,7 @@ import UserDetailsAdmin from './Components/Admin/Pages/UserDetailsAdmin'
 import Orders from './Components/Admin/Pages/Orders.jsx'
 
 import NoMatch from './Components/Nomatches.jsx/Nomatches.jsx'
-import UserOrders from './Components/User/pagas/userOrders.jsx'
+import UserOrders from './Components/User/pagas/UserOrders.jsx'
 
 
 function App() {
