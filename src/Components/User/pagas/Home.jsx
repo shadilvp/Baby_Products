@@ -25,12 +25,12 @@ const Home = () => {
 
     return (
         <>
-            <div className="bg-[#FAF2DD]" >
+            <div className="bg-[#FAF2DD]">
                 <Header />
-                <div className="flex items-center justify-between min-h-screen p-6 bg-[#FAE0C5] rounded-lg shadow-lg mt-4">
+                <div className="flex flex-col sm:flex-row items-center justify-between min-h-screen p-6 bg-[#FAE0C5] rounded-lg shadow-lg mt-4">
                     <div className="flex-1 text-left p-6">
-                        <h1 className="text-4xl font-bold text-[#3C4C3C] mb-4">Welcome to SoftSteps</h1>
-                        <p className="text-lg text-[#3C4C3C] mb-6">
+                        <h1 className="text-3xl sm:text-4xl font-bold text-[#3C4C3C] mb-4">Welcome to SoftSteps</h1>
+                        <p className="text-base sm:text-lg text-[#3C4C3C] mb-6">
                             At SoftSteps, we offer a range of baby products designed with love and care. Our goal is to provide the best for your little ones, ensuring safety, comfort, and style. Shop now and give your baby the best start in life!
                         </p>
                         <Link
@@ -40,11 +40,11 @@ const Home = () => {
                             Shop Now
                         </Link>
                     </div>
-                    <div className="flex-1 h-[700px] w-full">
+                    <div className="flex-1 w-full mt-4 sm:mt-0">
                         <img
                             src={babyImageUrl}
                             alt="A happy baby"
-                            className="w-full h-3/4 rounded-[300px] shadow-lg object-cover"
+                            className="w-full sm:h-3/4 h-1/2 rounded-[300px] shadow-lg object-cover"
                         />
                     </div>
                 </div>
@@ -52,6 +52,7 @@ const Home = () => {
             </div>
         </>
     );
+    
 };
 
 export default Home;

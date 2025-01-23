@@ -56,7 +56,7 @@ const UserDetails = ({ show, toggle }) => {
     <div
       className={`user-details fixed right-4 top-16 w-[calc(50vh/1)] h-[70vh] bg-[#efd8a8] shadow-lg rounded-lg p-4 transition-all duration-300 ${
         show ? 'block' : 'hidden'
-      }`}
+      } sm:w-full sm:h-[50vh] sm:bottom-0 sm:left-0 sm:right-0 sm:top-auto sm:rounded-t-lg`}
       style={{ zIndex: 50 }}
     >
       {user ? (
@@ -71,7 +71,7 @@ const UserDetails = ({ show, toggle }) => {
           </div>
   
           {/* Buttons */}
-          <div className="mt-auto space-y-4">
+          <div className="mt-auto space-y-4 w-full">
             <button
               onClick={handleLogOut}
               className="w-full border border-transparent px-10 py-4 rounded hover:border-black transition-colors duration-300"
@@ -107,6 +107,7 @@ const UserDetails = ({ show, toggle }) => {
       )}
     </div>
   );
+  
   
 };
 

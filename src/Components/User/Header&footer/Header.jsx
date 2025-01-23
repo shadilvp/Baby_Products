@@ -21,10 +21,13 @@ const Header = () => {
     return (
       <header className="bg-[#FAF2DD] p-4">
         <nav className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-[#3C4C3C] cursor-pointer" onClick={() => navigate('/')}>
+          <h1
+            className="text-2xl font-bold text-[#3C4C3C] cursor-pointer"
+            onClick={() => navigate('/')}
+          >
             SoftSteps
           </h1>
-  
+    
           {/* Mobile Navigation Toggle */}
           <button
             className="lg:hidden focus:outline-none focus:ring-2 focus:ring-[#9ED1DB]"
@@ -32,7 +35,7 @@ const Header = () => {
           >
             <box-icon name="menu" size="md"></box-icon>
           </button>
-  
+    
           {/* Desktop Menu */}
           <ul className="hidden lg:flex space-x-6 text-[#3C4C3C]">
             <li><button onClick={() => navigate('/')} className="hover:text-[#9ED1DB]">Home</button></li>
@@ -40,23 +43,23 @@ const Header = () => {
             <li><button onClick={() => navigate('/about')} className="hover:text-[#9ED1DB]">About</button></li>
             <li><button onClick={() => navigate('/contact')} className="hover:text-[#9ED1DB]">Contact</button></li>
           </ul>
-  
+    
           {/* Mobile Menu */}
-          <ul id="mobile-menu" className="hidden flex-col space-y-2 text-[#3C4C3C]">
+          <ul id="mobile-menu" className="hidden flex-col space-y-2 text-[#3C4C3C] lg:hidden absolute top-full left-0 w-full bg-[#FAF2DD] p-6">
             <li><button onClick={() => navigate('/')} className="hover:text-[#9ED1DB]">Home</button></li>
             <li><button onClick={() => navigate('/shop')} className="hover:text-[#9ED1DB]">Shop</button></li>
             <li><button onClick={() => navigate('/about')} className="hover:text-[#9ED1DB]">About</button></li>
             <li><button onClick={() => navigate('/contact')} className="hover:text-[#9ED1DB]">Contact</button></li>
           </ul>
-  
+    
           {/* Search and Icons */}
-          <div onSubmit={handleSearch} className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
             <input
               type="text"
               placeholder="Search Items"
               onChange={(e) => setSearchQuery(e.target.value)}
               value={searchQuery}
-              className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#9ED1DB]"
+              className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#9ED1DB] hidden sm:block"
             />
             <button className="hover:text-[#9ED1DB]" onClick={() => navigate('/cart')}>
               <box-icon type="solid" name="cart-alt"></box-icon>
@@ -65,11 +68,12 @@ const Header = () => {
               <box-icon name="user"></box-icon>
             </button>
           </div>
-  
+    
           {showUserDetails && <UserDetails show={showUserDetails} toggle={toggleUserDetails} />}
         </nav>
       </header>
     );
+    
   };
   
   export default Header;

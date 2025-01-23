@@ -33,16 +33,17 @@ const Shop = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Header />
-      <div className="p-8">
+      <div className="p-8 relative">
         {/* Filter Button */}
         <button
           onClick={() => setFilterButton(!filterButton)}
-          className="absolute top-30 right-8 text-blue-500 hover:text-blue-700 transition-colors duration-300"
+          className="absolute top-6 right-8 text-blue-500 hover:text-blue-700 transition-colors duration-300 sm:top-8 sm:right-10"
         >
           <box-icon name="filter" size="lg"></box-icon>
         </button>
+  
         {filterButton && (
-          <div className="absolute top-35 right-9 bg-white shadow-md border border-gray-200 rounded-lg p-4 flex flex-col space-y-2 w-48">
+          <div className="absolute top-12 right-8 bg-white shadow-md border border-gray-200 rounded-lg p-4 flex flex-col space-y-2 w-48 sm:top-16 sm:right-12">
             <button
               onClick={() => handleCategoryFilter('')}
               className="text-gray-700 hover:bg-blue-100 px-2 py-1 rounded-md"
@@ -69,9 +70,9 @@ const Shop = () => {
             </button>
           </div>
         )}
-
-        <h1 className="text-3xl font-semibold text-gray-800 mb-8">All Products</h1>
-
+  
+        <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-8">All Products</h1>
+  
         {status === 'loading' ? (
           <p>Loading products...</p>
         ) : (
@@ -99,7 +100,7 @@ const Shop = () => {
             ))}
           </div>
         )}
-
+  
         {/* Pagination */}
         <div className="mt-4 flex justify-center space-x-2">
           {Array.from({ length: totalPages }, (_, index) => (
@@ -120,6 +121,7 @@ const Shop = () => {
       <Footer />
     </div>
   );
+  
 };
 
 export default Shop;
