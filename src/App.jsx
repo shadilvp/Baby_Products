@@ -3,8 +3,8 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 // User
 import Home from './Components/User/pagas/Home.jsx'
-// import About from './Components/User/pagas/About'
-// import Contact from './Components/User/pagas/Contact'
+import About from './Components/User/pagas/About'
+import Contact from './Components/User/pagas/Contact'
 import LogIn from './Components/User/LogIn-SignIn/LogIn.jsx'
 import SignUp from './Components/User/LogIn-SignIn/SignUp.jsx'
 import Cart from './Components/User/pagas/Cart'
@@ -46,9 +46,10 @@ function App() {
                     <Route path='/address' element={<AddressPage/>}/>
                     <Route path='/proceedpayment' element={<ProceedPayment/>}/>
                     <Route path='/userOrders' element={<UserOrders/>}/>
-
-                    {/* <Route path='/about' element={<About/>}/>
+                    <Route path='/about' element={<About/>}/>
                     <Route path='/contact' element={<Contact/>}/>
+
+                    {/* 
                     <Route path='/userdetails' element={<UserDetails/>}/> */}
 
                     {/* admin */}

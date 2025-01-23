@@ -44,6 +44,8 @@ const ProceedPayment = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                localStorage.removeItem("rzp_checkout_anon_id")
+                localStorage.removeItem("rzp_device_id")
                 navigate('/shop');
             } else if (paymentMethod === 'Razorpay') {
                 // For Razorpay, initiate the payment process
@@ -87,6 +89,8 @@ const ProceedPayment = () => {
                                         showConfirmButton: false,
                                         timer: 1500,
                                     });
+                                    localStorage.removeItem("rzp_checkout_anon_id")
+                                    localStorage.removeItem("rzp_device_id")
                                     navigate('/shop');
                             } catch (error) {
                                 console.error("Payment Verification Error:", error);
@@ -165,7 +169,15 @@ const ProceedPayment = () => {
                         ))}
                     </div>
                 ) : (
-                    <p>No addresses available.</p>
+                <div className="flex items-center space-x-4">
+                    <p className="text-gray-600">No addresses available.</p>
+                    <button
+                        onClick={() => navigate("/address")}
+                        className="px-4 py-2 border border-blue-500 text-blue-500 bg-white rounded-full text-sm hover:bg-blue-500 hover:text-white transition"
+                    >
+                     Add Address
+                    </button>
+                </div>
                 )}
 
                 <h2 className="text-lg font-semibold mb-4">Order Details</h2>

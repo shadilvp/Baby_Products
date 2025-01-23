@@ -14,7 +14,7 @@ const SignUp = () => {
       setTimeout(() => {
         navigate('/login');
         dispatch(clearMessage());
-      }, 2000);
+      }, 500);
     }
   }, [message, navigate, dispatch]);
 
